@@ -1,36 +1,37 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-require('./bootstrap');
 
 window.Vue = require('vue');
 
-// require('./material-design');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('header-image', require('./components/HeaderImage.vue').default);
+// Include and register components
+Vue.component('nav-bar', require('./components/NavBar.vue').default);
+Vue.component('section-top', require('./components/SectionTop.vue').default);
 Vue.component('modal-reservation', require('./components/ModalReservation.vue').default);
 Vue.component('modal-contact', require('./components/ModalContact.vue').default);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.component('section-about', require('./components/SectionAbout.vue').default);
+Vue.component('section-streak', require('./components/SectionStreak.vue').default);
+Vue.component('section-menu', require('./components/SectionMenu.vue').default);
+Vue.component('section-products', require('./components/SectionProducts.vue').default);
+Vue.component('section-menu-table', require('./components/SectionMenuTable.vue').default);
+Vue.component('section-streak-2', require('./components/SectionStreak2.vue').default);
+Vue.component('section-pictures', require('./components/SectionPictures.vue').default);
+Vue.component('section-reviews', require('./components/SectionReviews.vue').default);
+Vue.component('section-footer', require('./components/SectionFooter.vue').default);
+// Vue.component('scroll-to-top', require('./components/ScrollToTop.vue').default);
 
+// Setup Axios and default headers
+window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+// CSRF Token for laravel requests
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+
+// Create the vue instance and mount it to #vuejs div.
 const app = new Vue({
     el: '#vuejs',
 });

@@ -12,7 +12,7 @@
               </div>
               <!--Body-->
               <div class="modal-body">
-                  <p>We like to receive a messages.</p>
+                  <p>Tell us what is on your mind</p>
                   <br>
                   <div class="md-form">
                       <i class="fa fa-user prefix"></i>
