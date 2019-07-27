@@ -13,21 +13,21 @@
               <!--Body-->
               <div class="modal-body">
                   <div class="md-form">
-                      <input type="text" id="form22" class="form-control">
+                      <input v-model="input.name" type="text" id="form22" class="form-control">
                       <label for="form42">Your Full Name</label>
                   </div>
 
                   <div class="md-form">
-                      <input type="text" id="form32" class="form-control">
+                      <input v-model="input.email" type="text" id="form32" class="form-control">
                       <label for="form34">Your Email</label>
                   </div>
 
                   <div class="md-form">
-                      <input type="text" id="form32" class="form-control">
+                      <input v-model="input.phone" type="text" id="form32" class="form-control">
                       <label for="form34">Your Phone Number</label>
                   </div>
 
-                  <select class="mdb-select colorful-select dropdown-warning">
+                  <select v-model="input.people" class="mdb-select colorful-select dropdown-warning">
                       <option value="1">One Person</option>
                       <option value="2">Two Persons</option>
                       <option value="3">Three Persons</option>
@@ -35,7 +35,7 @@
                   </select>
 
                   <div class="text-center">
-                      <button class="btn btn-lg btn-info waves-effect">Send Information</button>
+                      <button @click="submit" class="btn btn-lg btn-info waves-effect" :class="status == 'loading' ? 'disabled' : ''">Send Information</button>
                       <p class="text-muted">*Some dummy text goes here.</p>
 
                       <div class="call">
@@ -55,7 +55,36 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+
+  data() {
+    return {
+      input: {
+        name: '',
+        email: '',
+        phone: '',
+        people: 1,
+      },
+      status: ''
+    }
+  },
+
+  methods: {
+    async submit() {
+      this.status = 'loading';
+      let payload = this.input;
+
+      axios.post('http://localhost:8000/reservation', payload)
+            .then((response) => {
+              console.log(response);
+            });
+
+
+
+    }
+  }
 }
 </script>
 
