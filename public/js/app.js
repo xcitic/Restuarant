@@ -1971,6 +1971,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1994,7 +1996,12 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     fetchMessages: function fetchMessages() {
-      console.log('messages');
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://localhost:8000/messages/get').then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.messages = data;
+      });
     }
   }
 });
@@ -5062,6 +5069,8 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.message))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.created_at))]),
+                        _vm._v(" "),
                         _vm._m(4, true)
                       ])
                     }),
@@ -5200,6 +5209,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Subject")]),
         _vm._v(" "),
         _c("th", [_vm._v("Message")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sent At")]),
         _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])

@@ -67,6 +67,7 @@
                                     <th>Email</th>
                                     <th>Subject</th>
                                     <th>Message</th>
+                                    <th>Sent At</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -77,6 +78,7 @@
                                     <td>{{item.email}}</td>
                                     <td>{{item.subject}}</td>
                                     <td>{{item.message}}</td>
+                                    <td>{{item.created_at}}</td>
                                     <td>
                                         <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
                                         <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
@@ -124,7 +126,10 @@ export default {
     },
 
     fetchMessages() {
-      console.log('messages')
+      axios.get('http://localhost:8000/messages/get')
+          .then(({data}) => {
+            this.messages = data;
+          });
     }
 
   }

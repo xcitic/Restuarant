@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -15,7 +16,15 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+      $user = Auth::user();
+
+      if($user->isAdmin()) {
+        $messages = Message::get();
+      } else {
+        $messages = $user->messages();
+      }
+
+      return response()->json($messages);
     }
 
     /**
@@ -25,7 +34,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -81,7 +90,7 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+
     }
 
     /**
