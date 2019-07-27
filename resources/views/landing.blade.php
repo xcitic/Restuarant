@@ -7,6 +7,9 @@
                 <nav-bar />
             </div>
             <div>
+              <flash-message></flash-message>
+            </div>
+            <div>
               <section-top />
             </div>
             <div>

@@ -55,8 +55,12 @@
 
       <div id="vuejs">
         <div class="container">
+          <div>
+            <flash-message></flash-message>
+          </div>
           <div class="col-md-12">
             <section-dashboard-list />
+
           </div>
         </div>
 

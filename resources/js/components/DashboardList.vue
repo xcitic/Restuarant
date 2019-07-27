@@ -135,16 +135,22 @@ export default {
     removeReservation(id) {
       axios.post(`http://localhost:8000/reservation/${id}/delete`)
             .then((response) => {
-              console.log(response);
+              this.flash(response.data, 'success');
               this.fetchReservations();
             })
+            .catch((err) => {
+              this.flash(err, 'error');
+            });
     },
 
     removeMessage(id) {
       axios.post(`http://localhost:8000/message/${id}/delete`)
             .then((response) => {
-              console.log(response);
+              this.flash(response.data, 'success');
               this.fetchMessages();
+            })
+            .catch((err) => {
+              this.flash(err, 'error');
             });
     },
 

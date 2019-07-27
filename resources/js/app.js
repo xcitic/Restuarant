@@ -1,6 +1,15 @@
 
 window.Vue = require('vue');
 
+import VueFlashMessage from 'vue-flash-message';
+require('vue-flash-message/dist/vue-flash-message.min.css');
+
+Vue.use(VueFlashMessage, {
+  messageOptions: {
+    timeout: 3000
+  }
+});
+
 // Include and register components
 Vue.component('nav-bar', require('./components/NavBar.vue').default);
 Vue.component('section-top', require('./components/SectionTop.vue').default);
