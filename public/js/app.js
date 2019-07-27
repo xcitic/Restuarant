@@ -1971,6 +1971,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      reservations: [],
+      messages: [],
+      search: ''
+    };
+  },
+  mounted: function mounted() {
+    this.fetchReservations();
+    this.fetchMessages();
+  },
+  methods: {
+    fetchReservations: function fetchReservations() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://localhost:8000/reservations/get').then(function (_ref) {
+        var data = _ref.data;
+        _this.reservations = data;
+      });
+    },
+    fetchMessages: function fetchMessages() {
+      console.log('messages');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ModalContact.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ModalContact.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2011,101 +2083,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      reservations: [],
-      messages: [],
-      search: ''
+      input: {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      }
     };
   },
-  mounted: function mounted() {
-    this.fetchReservations();
-    this.fetchMessages();
-  },
   methods: {
-    fetchReservations: function fetchReservations() {
-      var _this = this;
+    submit: function () {
+      var _submit = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var payload;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                payload = this.input;
+                axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/message', payload).then(function (response) {
+                  console.log(response);
+                });
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://localhost:8000/reservations/get').then(function (_ref) {
-        var data = _ref.data;
-        _this.reservations = data;
-      });
-    },
-    fetchMessages: function fetchMessages() {
-      console.log('messages');
-    }
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function submit() {
+        return _submit.apply(this, arguments);
+      }
+
+      return submit;
+    }()
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ModalContact.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ModalContact.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -4993,7 +5009,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.reservations, function(item) {
+                    _vm._l(_vm.reservations, function(item, key) {
                       return _c("tr", [
                         _c("th", { attrs: { scope: "row" } }, [
                           _vm._v(_vm._s(item.id))
@@ -5019,7 +5035,42 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(3)
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade",
+              attrs: { id: "panel84", role: "tabpanel" }
+            },
+            [
+              _c("div", { staticClass: "table-responsive" }, [
+                _c("table", { staticClass: "table" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.messages, function(item, key) {
+                      return _c("tr", [
+                        _c("th", { attrs: { scope: "row" } }, [
+                          _vm._v(_vm._s(item.id))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.email))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.subject))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.message))]),
+                        _vm._v(" "),
+                        _vm._m(4, true)
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
+            ]
+          )
         ])
       ])
     ])
@@ -5138,292 +5189,69 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane fade",
-        attrs: { id: "panel84", role: "tabpanel" }
-      },
-      [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", [_vm._v("#")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Company Name")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Username")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Actions")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("PiedPiper")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@piedpiper")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "blue-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "See results"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-user" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "teal-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Edit"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-pencil" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "red-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Remove"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-times" })]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Github, Inc")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@github")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "blue-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "See results"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-user" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "teal-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Edit"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-pencil" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "red-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Remove"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-times" })]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Twitter, Inc")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@twitter")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "blue-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "See results"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-user" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "teal-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Edit"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-pencil" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "red-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Remove"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-times" })]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("4")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Alphabet, Inc")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@alphabet")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "blue-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "See results"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-user" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "teal-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Edit"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-pencil" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "red-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Remove"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-times" })]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("5")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Adobe Corporation")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@adobe")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "blue-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "See results"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-user" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "teal-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Edit"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-pencil" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "red-text",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-placement": "top",
-                        title: "",
-                        "data-original-title": "Remove"
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-times" })]
-                  )
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]
-    )
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("From")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Subject")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Message")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "a",
+        {
+          staticClass: "blue-text",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "top",
+            title: "",
+            "data-original-title": "See results"
+          }
+        },
+        [_c("i", { staticClass: "fa fa-user" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "teal-text",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "top",
+            title: "",
+            "data-original-title": "Edit"
+          }
+        },
+        [_c("i", { staticClass: "fa fa-pencil" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "red-text",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "top",
+            title: "",
+            "data-original-title": "Remove"
+          }
+        },
+        [_c("i", { staticClass: "fa fa-times" })]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -5447,143 +5275,212 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade modal-ext",
+      attrs: {
+        id: "modal-contact",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "myModalLabel",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("p", [_vm._v("Tell us what is on your mind")]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "md-form" }, [
+              _c("i", { staticClass: "fa fa-user prefix" }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.input.name,
+                    expression: "input.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "form22" },
+                domProps: { value: _vm.input.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.input, "name", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "form42" } }, [_vm._v("Your name")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "md-form" }, [
+              _c("i", { staticClass: "fa fa-envelope prefix" }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.input.email,
+                    expression: "input.email"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "form32" },
+                domProps: { value: _vm.input.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.input, "email", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "form34" } }, [_vm._v("Your email")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "md-form" }, [
+              _c("i", { staticClass: "fa fa-tag prefix" }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.input.subject,
+                    expression: "input.subject"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "form32" },
+                domProps: { value: _vm.input.subject },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.input, "subject", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "form34" } }, [_vm._v("Subject")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "md-form" }, [
+              _c("i", { staticClass: "fa fa-pencil prefix" }),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.input.message,
+                    expression: "input.message"
+                  }
+                ],
+                staticClass: "md-textarea",
+                attrs: { type: "text", id: "form8" },
+                domProps: { value: _vm.input.message },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.input, "message", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "form8" } }, [_vm._v("Textarea")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-lg btn-info waves-effect",
+                  on: { click: _vm.submit }
+                },
+                [_vm._v("Submit")]
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade modal-ext",
-        attrs: {
-          id: "modal-contact",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "myModalLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "h4",
-                  { staticClass: "w-100", attrs: { id: "myModalLabel" } },
-                  [_vm._v("Write to us")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("p", [_vm._v("Tell us what is on your mind")]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("div", { staticClass: "md-form" }, [
-                  _c("i", { staticClass: "fa fa-user prefix" }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", id: "form22" }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "form42" } }, [
-                    _vm._v("Your name")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "md-form" }, [
-                  _c("i", { staticClass: "fa fa-envelope prefix" }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", id: "form32" }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "form34" } }, [
-                    _vm._v("Your email")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "md-form" }, [
-                  _c("i", { staticClass: "fa fa-tag prefix" }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", id: "form32" }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "form34" } }, [_vm._v("Subject")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "md-form" }, [
-                  _c("i", { staticClass: "fa fa-pencil prefix" }),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    staticClass: "md-textarea",
-                    attrs: { type: "text", id: "form8" }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "form8" } }, [_vm._v("Textarea")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "text-center" }, [
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-lg btn-info waves-effect" },
-                    [_vm._v("Submit")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "call" }, [
-                    _c("p", [
-                      _vm._v("Or would you prefer to call? "),
-                      _c("span", { staticClass: "cf-phone" }, [
-                        _c("i", { staticClass: "fa fa-phone" }),
-                        _vm._v("+01 234 565 280")
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-light-green waves-effect",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+      _vm._v(" "),
+      _c("h4", { staticClass: "w-100", attrs: { id: "myModalLabel" } }, [
+        _vm._v("Write to us")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "call" }, [
+      _c("p", [
+        _vm._v("Or would you prefer to call? "),
+        _c("span", { staticClass: "cf-phone" }, [
+          _c("i", { staticClass: "fa fa-phone" }),
+          _vm._v("+01 234 565 280")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-light-green waves-effect",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
   }
 ]
 render._withStripped = true

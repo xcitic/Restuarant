@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 class ReservationController extends Controller
 {
 
-    public function save(Request $data) {
+    public function store(Request $data) {
 
       // validate the input
       //
@@ -27,8 +27,8 @@ class ReservationController extends Controller
       $validator = Validator::make($data->all(), [
         'name' => 'required|string|max:100',
         'email' => 'required|string|max:100',
-        'phone' => 'required|integer',
-        'people' => 'required|integer|max:4',
+        'phone' => 'required|string|max:25',
+        'people' => 'required|integer|max:250',
       ]);
 
 

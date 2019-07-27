@@ -37,7 +37,7 @@
                             </thead>
                             <tbody>
 
-                                <tr v-for="item in reservations">
+                                <tr v-for="(item, key) in reservations">
                                     <th scope="row">{{item.id}}</th>
                                     <td>{{item.name}}</td>
                                     <td>{{item.email}}</td>
@@ -63,56 +63,20 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Company Name</th>
-                                    <th>Username</th>
+                                    <th>From</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>PiedPiper</td>
-                                    <td>@piedpiper</td>
-                                    <td>
-                                        <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
-                                        <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                        <a class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Github, Inc</td>
-                                    <td>@github</td>
-                                    <td>
-                                        <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
-                                        <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                        <a class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Twitter, Inc</td>
-                                    <td>@twitter</td>
-                                    <td>
-                                        <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
-                                        <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                        <a class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Alphabet, Inc</td>
-                                    <td>@alphabet</td>
-                                    <td>
-                                        <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
-                                        <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                        <a class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Adobe Corporation</td>
-                                    <td>@adobe</td>
+                                <tr v-for="(item, key) in messages">
+                                    <th scope="row">{{item.id}}</th>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.email}}</td>
+                                    <td>{{item.subject}}</td>
+                                    <td>{{item.message}}</td>
                                     <td>
                                         <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
                                         <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>

@@ -4,23 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reservation extends Model
+class Message extends Model
 {
-    protected $table = 'reservations';
+    protected $table = 'messages';
 
     protected $fillable = [
-      'user_id',
       'name',
       'email',
-      'phone',
-      'people',
-      'date'
+      'subject',
+      'message',
+      'user_id'
     ];
 
 
     public function owner() {
       return $this->belongsTo('App\User');
     }
-
-
+    
 }

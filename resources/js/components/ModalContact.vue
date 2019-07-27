@@ -16,30 +16,30 @@
                   <br>
                   <div class="md-form">
                       <i class="fa fa-user prefix"></i>
-                      <input type="text" id="form22" class="form-control">
+                      <input v-model="input.name" type="text" id="form22" class="form-control">
                       <label for="form42">Your name</label>
                   </div>
 
                   <div class="md-form">
                       <i class="fa fa-envelope prefix"></i>
-                      <input type="text" id="form32" class="form-control">
+                      <input v-model="input.email" type="text" id="form32" class="form-control">
                       <label for="form34">Your email</label>
                   </div>
 
                   <div class="md-form">
                       <i class="fa fa-tag prefix"></i>
-                      <input type="text" id="form32" class="form-control">
+                      <input v-model="input.subject" type="text" id="form32" class="form-control">
                       <label for="form34">Subject</label>
                   </div>
 
                   <div class="md-form">
                       <i class="fa fa-pencil prefix"></i>
-                      <textarea type="text" id="form8" class="md-textarea"></textarea>
+                      <textarea v-model="input.message" type="text" id="form8" class="md-textarea"></textarea>
                       <label for="form8">Textarea</label>
                   </div>
 
                   <div class="text-center">
-                      <button class="btn btn-lg btn-info waves-effect">Submit</button>
+                      <button @click="submit" class="btn btn-lg btn-info waves-effect">Submit</button>
 
                       <div class="call">
                           <p>Or would you prefer to call? <span class="cf-phone"><i class="fa fa-phone"></i>+01 234 565 280</span></p>
@@ -58,7 +58,31 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+
+  data() {
+    return {
+      input: {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      }
+    }
+  },
+
+  methods: {
+    async submit() {
+      let payload = this.input;
+
+      axios.post('http://localhost:8000/message', payload)
+            .then((response) => {
+              console.log(response);
+            });
+    }
+  }
 }
 </script>
 
