@@ -1,7 +1,10 @@
 <template>
   <div class="col-md-12">
 
+    <modals-container height="auto"/>
+
     <div class="row">
+
         <div class="col-md-12 mb-1">
             <!-- Tabs -->
             <!-- Nav tabs -->
@@ -37,7 +40,8 @@
                             </thead>
                             <tbody>
 
-                                <tr v-for="(item, key) in reservations">
+                                <tr v-for="(item, index) in reservations">
+
                                     <th scope="row">{{item.id}}</th>
                                     <td>{{item.name}}</td>
                                     <td>{{item.email}}</td>
@@ -45,9 +49,8 @@
                                     <td>{{item.people}}</td>
                                     <td>{{item.date}}</td>
                                     <td>
-                                        <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
-                                        <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                        <a @click="removeReservation(item.id)" class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                                        <a class="teal-text" data-toggle="modal" data-placement="top" title="Edit" data-original-title="Edit" @click="modalReservation(index)"><i class="fa fa-pencil"></i></a>
+                                        <a @click="removeReservation(item.id)" class="red-text" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Remove"><i class="fa fa-times"></i></a>
                                     </td>
                                 </tr>
 
@@ -72,7 +75,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(item, key) in messages">
+                                <tr v-for="(item, index) in messages">
                                     <th scope="row">{{item.id}}</th>
                                     <td>{{item.name}}</td>
                                     <td>{{item.email}}</td>
@@ -80,8 +83,8 @@
                                     <td>{{item.message}}</td>
                                     <td>{{item.created_at}}</td>
                                     <td>
-                                        <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
-                                        <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                        <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See Message" @click="modalMessageView(index)"><i class="fa fa-envelope"></i></a>
+                                        <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" @click="modalMessage(index)"><i class="fa fa-pencil"></i></a>
                                         <a @click="removeMessage(item.id)" class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
                                     </td>
                                 </tr>
@@ -99,16 +102,21 @@
 
 <script>
 import axios from 'axios';
+import editReservation from './ModalReservationEdit.vue';
+import editMessage from './ModalMessageEdit.vue';
+import viewMessage from './ModalMessageView.vue';
 
 export default {
 
+  components: {
+    editReservation
+  },
+
   data() {
     return {
-
       reservations: [],
       messages: [],
       search: '',
-
     }
   },
 
@@ -153,6 +161,34 @@ export default {
               this.flash(err, 'error');
             });
     },
+
+    modalReservation(i) {
+      let payload = this.reservations[i];
+      this.$modal.show(editReservation, {
+          data: payload
+      }, {
+        height: 'auto'
+      })
+
+    },
+
+    modalMessage(i) {
+      let payload = this.messages[i];
+      this.$modal.show(editMessage, {
+          data: payload
+      }, {
+        height: 'auto'
+      })
+    },
+
+    modalMessageView(i) {
+      let payload = this.messages[i];
+      this.$modal.show(viewMessage, {
+          data: payload
+      }, {
+        height: 'auto'
+      })
+    }
 
   }
 }

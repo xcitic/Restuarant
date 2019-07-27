@@ -111,9 +111,38 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Message $message)
+    public function update(Request $data, $id)
     {
-        //
+      $validator = Validator::make($data->all(), [
+        'name' => 'required|string|max:75',
+        'email' => 'required|email|max:75',
+        'subject' => 'required|string|max:255',
+        'message'=> 'required|string|max:750',
+      ]);
+
+      if ($validator->fails()) {
+        return response([ 'errors' => $validator->errors()->all(), 422]);
+      }
+
+
+      $message = Message::findOrFail($id);
+      $user = Auth::user();
+      $message_owner = $message->owner->id;
+
+      if ($user->isAdmin()) {
+        $message->update($data->all());
+      }
+      elseif ($user_id === $message_owner) {
+
+        $message->update($data->all());
+      }
+      else {
+        return response()->json('Unauthorized', 401);
+      }
+
+
+      return response()->json('Successfully updated your message.', 200);
+
     }
 
     /**

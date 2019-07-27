@@ -16,7 +16,10 @@ class ReservationController extends Controller
 
 
 
-
+    /**
+     * List the reservations, admin sees all, user sees the one it owns.
+     * @return JSON array of Objects
+     */
     public function index() {
 
       $user = Auth::user();
@@ -34,6 +37,13 @@ class ReservationController extends Controller
 
     }
 
+
+
+    /**
+     * Validate data and save to database + notify user.
+     * @param  Request $data  input from frontend
+     * @return JSON
+     */
     public function store(Request $data) {
 
       // validate the input
@@ -118,19 +128,48 @@ class ReservationController extends Controller
     }
 
 
-    public function delete() {
+    public function update(Request $data, $id) {
 
-      // delete the reservation
+      $validator = Validator::make($data->all(), [
+        'name' => 'required|string|max:100',
+        'email' => 'required|string|max:100',
+        'phone' => 'required|string|max:25',
+        'people' => 'required|integer|max:250',
+      ]);
+
+      if ($validator->fails()) {
+        return response([ 'errors' => $validator->errors()->all(), 422]);
+      }
+
+
+      $reservation = Reservation::findOrFail($id);
+      $user = Auth::user();
+      $reservation_owner = $reservation->owner->id;
+
+      if ($user->isAdmin()) {
+        $reservation->update($data->all());
+      }
+      elseif ($user_id === $reservation_owner) {
+
+        $reservation->update($data->all());
+      }
+      else {
+        return response()->json('Unauthorized', 401);
+      }
+
+
+
+
+      return response()->json('Successfully updated your reservation.', 200);
 
     }
 
 
-    public function modify() {
-
-      // change the date or people coming
-
-    }
-
+    /**
+     * Delete a reservation
+     * @param  integer $id  Unique identifier
+     * @return JSON
+     */
     public function destroy($id) {
        $reservation = Reservation::findOrFail($id);
        $user = Auth::user();

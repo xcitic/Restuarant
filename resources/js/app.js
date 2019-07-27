@@ -2,6 +2,7 @@
 window.Vue = require('vue');
 
 import VueFlashMessage from 'vue-flash-message';
+import VModal from 'vue-js-modal';
 require('vue-flash-message/dist/vue-flash-message.min.css');
 
 Vue.use(VueFlashMessage, {
@@ -9,6 +10,8 @@ Vue.use(VueFlashMessage, {
     timeout: 3000
   }
 });
+
+Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } });
 
 // Include and register components
 Vue.component('nav-bar', require('./components/NavBar.vue').default);
