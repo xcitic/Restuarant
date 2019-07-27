@@ -133,7 +133,11 @@ export default {
     },
 
     removeReservation(id) {
-      console.log(id);
+      axios.post(`http://localhost:8000/reservation/${id}/delete`)
+            .then((response) => {
+              console.log(response);
+              this.fetchReservations();
+            })
     },
 
     removeMessage(id) {

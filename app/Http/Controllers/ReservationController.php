@@ -13,6 +13,27 @@ use Illuminate\Support\Facades\Mail;
 class ReservationController extends Controller
 {
 
+
+
+
+
+    public function index() {
+
+      $user = Auth::user();
+
+      if ($user->isAdmin()) {
+        $reservations = Reservation::get();
+      } else {
+        $reservations = $user->reservations;
+      }
+
+
+      return response()->json($reservations, 200);
+
+
+
+    }
+
     public function store(Request $data) {
 
       // validate the input
@@ -104,34 +125,32 @@ class ReservationController extends Controller
     }
 
 
-    public function show() {
-
-      $user = Auth::user();
-
-      if ($user->isAdmin()) {
-        $reservations = Reservation::get();
-      } else {
-        $reservations = $user->reservations();
-      }
-
-
-      return response()->json($reservations, 200);
-
-
-
-    }
-
-
     public function modify() {
 
       // change the date or people coming
 
     }
 
-    public function listAll() {
-      // list all reservations for admins
-    }
+    public function destroy($id) {
+       $reservation = Reservation::findOrFail($id);
+       $user = Auth::user();
 
+       $user_id = $user->id;
+       $reservation_owner = $reservation->owner->id;
+
+       if ($user->isAdmin()) {
+         $reservation->delete();
+       }
+       elseif ($user_id === $reservation_owner) {
+
+         $reservation->delete();
+       }
+       else {
+         return response()->json('Unauthorized', 401);
+       }
+
+       return response()->json('Successfully deleted reservation', 200);
+    }
 
 
     /**

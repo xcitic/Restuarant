@@ -2004,15 +2004,21 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     removeReservation: function removeReservation(id) {
-      console.log(id);
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://localhost:8000/reservation/".concat(id, "/delete")).then(function (response) {
+        console.log(response);
+
+        _this3.fetchReservations();
+      });
     },
     removeMessage: function removeMessage(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://localhost:8000/message/".concat(id, "/delete")).then(function (response) {
         console.log(response);
 
-        _this3.fetchMessages();
+        _this4.fetchMessages();
       });
     }
   }

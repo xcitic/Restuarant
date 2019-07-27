@@ -20,10 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/reservation', 'ReservationController@store');
+Route::get('/reservations/get', 'ReservationController@index');
+Route::post('/reservation/{id}/delete', 'ReservationController@destroy');
 
-Route::get('/reservations/get', 'ReservationController@show');
 
 Route::post('/message', 'MessageController@store');
-
 Route::get('/messages/get', 'MessageController@index');
 Route::post('/message/{id}/delete', 'MessageController@destroy');

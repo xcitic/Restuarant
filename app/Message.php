@@ -9,16 +9,16 @@ class Message extends Model
     protected $table = 'messages';
 
     protected $fillable = [
+      'user_id',
       'name',
       'email',
       'subject',
       'message',
-      'user_id'
     ];
 
 
     public function owner() {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo('App\User', 'user_id');
     }
-    
+
 }

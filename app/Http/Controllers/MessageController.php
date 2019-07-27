@@ -21,7 +21,7 @@ class MessageController extends Controller
       if($user->isAdmin()) {
         $messages = Message::get();
       } else {
-        $messages = $user->messages();
+        $messages = $user->messages;
       }
 
       return response()->json($messages);
@@ -127,11 +127,12 @@ class MessageController extends Controller
         $message = Message::findOrFail($id);
         $user = Auth::user();
 
+        $message_owner = $message->owner->id;
 
         if($user->isAdmin() ) {
           $message->delete();
         }
-        elseif ( $user->id === $message->user_id) {
+        elseif ($user->id === $message_owner) {
           $message->delete();
         }
         else {
