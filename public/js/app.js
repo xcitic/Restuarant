@@ -2002,6 +2002,18 @@ __webpack_require__.r(__webpack_exports__);
         var data = _ref2.data;
         _this2.messages = data;
       });
+    },
+    removeReservation: function removeReservation(id) {
+      console.log(id);
+    },
+    removeMessage: function removeMessage(id) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://localhost:8000/message/".concat(id, "/delete")).then(function (response) {
+        console.log(response);
+
+        _this3.fetchMessages();
+      });
     }
   }
 });
@@ -5032,7 +5044,30 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.date))]),
                         _vm._v(" "),
-                        _vm._m(2, true)
+                        _c("td", [
+                          _vm._m(2, true),
+                          _vm._v(" "),
+                          _vm._m(3, true),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "red-text",
+                              attrs: {
+                                "data-toggle": "tooltip",
+                                "data-placement": "top",
+                                title: "",
+                                "data-original-title": "Remove"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.removeReservation(item.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-times" })]
+                          )
+                        ])
                       ])
                     }),
                     0
@@ -5051,7 +5086,7 @@ var render = function() {
             [
               _c("div", { staticClass: "table-responsive" }, [
                 _c("table", { staticClass: "table" }, [
-                  _vm._m(3),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -5071,7 +5106,30 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.created_at))]),
                         _vm._v(" "),
-                        _vm._m(4, true)
+                        _c("td", [
+                          _vm._m(5, true),
+                          _vm._v(" "),
+                          _vm._m(6, true),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "red-text",
+                              attrs: {
+                                "data-toggle": "tooltip",
+                                "data-placement": "top",
+                                title: "",
+                                "data-original-title": "Remove"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.removeMessage(item.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-times" })]
+                          )
+                        ])
                       ])
                     }),
                     0
@@ -5150,49 +5208,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "a",
-        {
-          staticClass: "blue-text",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "top",
-            title: "",
-            "data-original-title": "See results"
-          }
-        },
-        [_c("i", { staticClass: "fa fa-user" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "teal-text",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "top",
-            title: "",
-            "data-original-title": "Edit"
-          }
-        },
-        [_c("i", { staticClass: "fa fa-pencil" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "red-text",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "top",
-            title: "",
-            "data-original-title": "Remove"
-          }
-        },
-        [_c("i", { staticClass: "fa fa-times" })]
-      )
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "blue-text",
+        attrs: {
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "",
+          "data-original-title": "See results"
+        }
+      },
+      [_c("i", { staticClass: "fa fa-user" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "teal-text",
+        attrs: {
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "",
+          "data-original-title": "Edit"
+        }
+      },
+      [_c("i", { staticClass: "fa fa-pencil" })]
+    )
   },
   function() {
     var _vm = this
@@ -5220,49 +5266,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "a",
-        {
-          staticClass: "blue-text",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "top",
-            title: "",
-            "data-original-title": "See results"
-          }
-        },
-        [_c("i", { staticClass: "fa fa-user" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "teal-text",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "top",
-            title: "",
-            "data-original-title": "Edit"
-          }
-        },
-        [_c("i", { staticClass: "fa fa-pencil" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "red-text",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "top",
-            title: "",
-            "data-original-title": "Remove"
-          }
-        },
-        [_c("i", { staticClass: "fa fa-times" })]
-      )
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "blue-text",
+        attrs: {
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "",
+          "data-original-title": "See results"
+        }
+      },
+      [_c("i", { staticClass: "fa fa-user" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "teal-text",
+        attrs: {
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "",
+          "data-original-title": "Edit"
+        }
+      },
+      [_c("i", { staticClass: "fa fa-pencil" })]
+    )
   }
 ]
 render._withStripped = true

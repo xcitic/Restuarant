@@ -122,8 +122,22 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($id)
     {
-        //
+        $message = Message::findOrFail($id);
+        $user = Auth::user();
+
+
+        if($user->isAdmin() ) {
+          $message->delete();
+        }
+        elseif ( $user->id === $message->user_id) {
+          $message->delete();
+        }
+        else {
+          return response()->json('Unauthorized', 401);
+        }
+
+        return response()->json('Successfully deleted message', 200);
     }
 }

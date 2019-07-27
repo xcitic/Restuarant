@@ -47,7 +47,7 @@
                                     <td>
                                         <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
                                         <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                        <a class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                                        <a @click="removeReservation(item.id)" class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
                                     </td>
                                 </tr>
 
@@ -82,7 +82,7 @@
                                     <td>
                                         <a class="blue-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="See results"><i class="fa fa-user"></i></a>
                                         <a class="teal-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                        <a class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                                        <a @click="removeMessage(item.id)" class="red-text" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -130,7 +130,19 @@ export default {
           .then(({data}) => {
             this.messages = data;
           });
-    }
+    },
+
+    removeReservation(id) {
+      console.log(id);
+    },
+
+    removeMessage(id) {
+      axios.post(`http://localhost:8000/message/${id}/delete`)
+            .then((response) => {
+              console.log(response);
+              this.fetchMessages();
+            });
+    },
 
   }
 }
