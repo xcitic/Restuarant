@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use App\User;
+use App\Mail\ReservationCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -36,9 +38,15 @@ class ReservationController extends Controller
       }
 
 
+      $email = $data->email;
+
       // If user does not exist
       // Create a new user with a random password,
-      $user = Auth::user();
+      if (Auth::user()) {
+        $user = Auth::user();
+      } else {
+        $user = User::where('email', $email)->first();
+      }
 
       if (!$user)
       {
@@ -47,20 +55,22 @@ class ReservationController extends Controller
 
         $user = new User([
           'name' => $data->name,
-          'email' => $data->email,
+          'email' => $email,
           'password' => $encrypted,
         ]);
 
         $user->save();
+
+        $createdUser = true;
       }
-      
+
       // create the reservation
       if ($user)
       {
         $reservation = Reservation::create([
           'user_id' => $user->id,
           'name' => $data->name,
-          'email' => $data->email,
+          'email' => $email,
           'phone' => $data->phone,
           'people' => $data->people,
         ]);
@@ -68,6 +78,16 @@ class ReservationController extends Controller
         $reservation->save();
 
         // Send email confirmation to user with reservation & user details
+        // TODO
+        //  Change ->send to ->queue
+
+
+
+        // if(!$createdUser) {
+        //   Mail::to($email)->send(new ReservationCreated($reservation, $email));
+        // } else {
+        //   Mail::to($email)->send(new ReservationCreated($reservation, $email, $password));
+        // }
 
         return response($reservation, 200);
       }
@@ -85,7 +105,20 @@ class ReservationController extends Controller
 
 
     public function show() {
-      // show reservation that belongs to the user
+
+      $user = Auth::user();
+
+      if ($user->isAdmin()) {
+        $reservations = Reservation::get();
+      } else {
+        $reservations = $user->reservations();
+      }
+
+
+      return response()->json($reservations);
+
+
+
     }
 
 
@@ -99,6 +132,14 @@ class ReservationController extends Controller
       // list all reservations for admins
     }
 
+
+
+    /**
+     * Generate a cryptographical secure password
+     * @param  integer $length   Key length
+     * @param  string $keyspace  Allowed characters
+     * @return string
+     */
 
     public function randomPassword($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
       $pieces = [];

@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/reservation', 'ReservationController@save');
+
+Route::get('/reservations/get', 'ReservationController@show');

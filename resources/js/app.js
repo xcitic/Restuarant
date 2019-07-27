@@ -16,6 +16,7 @@ Vue.component('section-pictures', require('./components/SectionPictures.vue').de
 Vue.component('section-reviews', require('./components/SectionReviews.vue').default);
 Vue.component('section-footer', require('./components/SectionFooter.vue').default);
 // Vue.component('scroll-to-top', require('./components/ScrollToTop.vue').default);
+Vue.component('section-dashboard-list', require('./components/DashboardList.vue').default);
 
 // Setup Axios and default headers
 window.axios = require('axios');
