@@ -77,7 +77,7 @@ class MessageController extends Controller
 
         $message->save();
 
-        return response()->json('Successfully sent message', 200);
+        return response()->json('Thank you, your message has been received :)', 200);
 
 
     }

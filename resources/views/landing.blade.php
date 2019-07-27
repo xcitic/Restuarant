@@ -2,13 +2,20 @@
 
       @section('content')
         <div id="vuejs">
+
+          <div class="container-fluid">
+            <div class="col-md-12">
+              <div class="offset-md-4">
+                <flash-message style="position:fixed; z-index:999999;" class="text-center"></flash-message>
+              </div>
+            </div>
+          </div>
+
           <header>
             <div>
                 <nav-bar />
             </div>
-            <div>
-              <flash-message></flash-message>
-            </div>
+
             <div>
               <section-top />
             </div>

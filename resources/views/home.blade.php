@@ -55,9 +55,13 @@
 
       <div id="vuejs">
         <div class="container">
-          <div>
-            <flash-message></flash-message>
+          <div class="col-md-12">
+            <div class="offset-md-4">
+              <flash-message style="position:fixed; z-index:999999;"></flash-message>
+            </div>
+
           </div>
+
           <div class="col-md-12">
             <section-dashboard-list />
 

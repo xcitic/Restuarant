@@ -39,7 +39,7 @@
                   </div>
 
                   <div class="text-center">
-                      <button @click="submit" class="btn btn-lg btn-info waves-effect">Submit</button>
+                      <button @click="submit" data-dismiss="modal" class="btn btn-lg btn-info waves-effect">Submit</button>
 
                       <div class="call">
                           <p>Or would you prefer to call? <span class="cf-phone"><i class="fa fa-phone"></i>+01 234 565 280</span></p>
@@ -79,7 +79,10 @@ export default {
 
       axios.post('http://localhost:8000/message', payload)
             .then((response) => {
-              console.log(response);
+              this.flash(response.data, 'success');
+            })
+            .catch((err) => {
+              this.flash(err, 'error');
             });
     }
   }

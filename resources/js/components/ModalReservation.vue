@@ -35,7 +35,7 @@
                   </select>
 
                   <div class="text-center">
-                      <button @click="submit" class="btn btn-lg btn-info waves-effect" :class="status == 'loading' ? 'disabled' : ''">Send Information</button>
+                      <button @click="submit" data-dismiss="modal" class="btn btn-lg btn-info waves-effect" :class="status == 'loading' ? 'disabled' : ''">Send Information</button>
                       <p class="text-muted">*Some dummy text goes here.</p>
 
                       <div class="call">
@@ -78,7 +78,10 @@ export default {
 
       axios.post('http://localhost:8000/reservation', payload)
             .then((response) => {
-              console.log(response);
+              this.flash(response.data, 'success');
+            })
+            .catch((err) => {
+              this.flash(err, 'error');
             });
 
 

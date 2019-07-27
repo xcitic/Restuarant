@@ -2125,6 +2125,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _submit = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
+
         var payload;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -2132,7 +2134,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 payload = this.input;
                 axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/message', payload).then(function (response) {
-                  console.log(response);
+                  _this.flash(response.data, 'success');
+                })["catch"](function (err) {
+                  _this.flash(err, 'error');
                 });
 
               case 2:
@@ -2247,6 +2251,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _submit = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
+
         var payload;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -2255,7 +2261,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.status = 'loading';
                 payload = this.input;
                 axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/reservation', payload).then(function (response) {
-                  console.log(response);
+                  _this.flash(response.data, 'success');
+                })["catch"](function (err) {
+                  _this.flash(err, 'error');
                 });
 
               case 3:
@@ -5529,6 +5537,7 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-lg btn-info waves-effect",
+                  attrs: { "data-dismiss": "modal" },
                   on: { click: _vm.submit }
                 },
                 [_vm._v("Submit")]
@@ -5770,6 +5779,7 @@ var render = function() {
                 {
                   staticClass: "btn btn-lg btn-info waves-effect",
                   class: _vm.status == "loading" ? "disabled" : "",
+                  attrs: { "data-dismiss": "modal" },
                   on: { click: _vm.submit }
                 },
                 [_vm._v("Send Information")]

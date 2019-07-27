@@ -110,7 +110,7 @@ class ReservationController extends Controller
         //   Mail::to($email)->send(new ReservationCreated($reservation, $email, $password));
         // }
 
-        return response($reservation, 200);
+        return response()->json('Your reservation has been saved. Thank you. An confirmation will soon be sent to: ' . $email . '', 200);
       }
 
 
