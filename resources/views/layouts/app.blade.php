@@ -69,14 +69,6 @@
               });
           </script>
 
-          <script type="text/javascript">
-              $(function () {
-                  $('#datetimepicker2').datetimepicker({
-                      locale: 'no'
-                  });
-              });
-          </script>
-
       </body>
 
       </html>

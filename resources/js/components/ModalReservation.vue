@@ -27,12 +27,18 @@
                       <label for="form34">Your Phone Number</label>
                   </div>
 
-                  <select v-model="input.people" class="mdb-select colorful-select dropdown-warning">
-                      <option value="1">One Person</option>
-                      <option value="2">Two Persons</option>
-                      <option value="3">Three Persons</option>
-                      <option value="4">More</option>
-                  </select>
+                  <div class="my-2 md-form">
+                    <input type="number" v-model="input.seats" />
+                    <label for="seats">Number of seats</label>
+                    <range-slider
+                      class="slider mt-1"
+                      min="1"
+                      max="250"
+                      step="1"
+                      v-model="input.seats"
+                      ></range-slider>
+
+                  </div>
 
                   <div class='col-md-12 mb-2'>
                     <div class="">
@@ -66,12 +72,15 @@
 <script>
 import axios from 'axios';
 import Datepicker from 'vuejs-datetimepicker';
+import RangeSlider from 'vue-range-slider';
+import 'vue-range-slider/dist/vue-range-slider.css';
 
 
 export default {
 
   components: {
-    Datepicker
+    Datepicker,
+    RangeSlider
   },
 
   data() {
@@ -108,4 +117,7 @@ export default {
 </script>
 
 <style scoped>
+.slider {
+  width: 100%;
+}
 </style>
