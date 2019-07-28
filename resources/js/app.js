@@ -1,17 +1,18 @@
-
-window.Vue = require('vue');
-
+import Vue from 'vue';
+// Import Plugins
 import VueFlashMessage from 'vue-flash-message';
 import VModal from 'vue-js-modal';
 require('vue-flash-message/dist/vue-flash-message.min.css');
+import VeeValidate from 'vee-validate';
 
+// Bind plugins
 Vue.use(VueFlashMessage, {
   messageOptions: {
     timeout: 3000
   }
 });
-
 Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } });
+Vue.use(VeeValidate);
 
 // Include and register components
 Vue.component('nav-bar', require('./components/NavBar.vue').default);

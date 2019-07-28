@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Message;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
@@ -46,17 +45,12 @@ class MessageController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
+        $validateData = $request->validate([
           'name' => 'required|string|max:75',
           'email' => 'required|email|max:75',
           'subject' => 'required|string|max:255',
           'message'=> 'required|string|max:750',
         ]);
-
-        if($validator->fails()) {
-          return response([ 'errors' => $validator->errors()->all(), 422]);
-        }
-
 
 
         $emailExists = \App\User::where('email', $request->email)->first();
@@ -113,17 +107,13 @@ class MessageController extends Controller
      */
     public function update(Request $data, $id)
     {
-      $validator = Validator::make($data->all(), [
+
+      $validateData = $data->validate([
         'name' => 'required|string|max:75',
         'email' => 'required|email|max:75',
         'subject' => 'required|string|max:255',
         'message'=> 'required|string|max:750',
       ]);
-
-      if ($validator->fails()) {
-        return response([ 'errors' => $validator->errors()->all(), 422]);
-      }
-
 
       $message = Message::findOrFail($id);
       $user = Auth::user();

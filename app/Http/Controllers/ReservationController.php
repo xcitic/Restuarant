@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Reservation;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReservationCreated;
@@ -51,19 +50,14 @@ class ReservationController extends Controller
       //
       // send email notification to user with reservation details and user login to change their details
 
-      $validator = Validator::make($data->all(), [
+
+      $validateData = $data->validate([
         'name' => 'required|string|max:100',
         'email' => 'required|string|max:100',
         'phone' => 'required|string|max:25',
         'seats' => 'required|integer|max:250',
         'date' => 'required|string|max:100',
       ]);
-
-
-
-      if ($validator->fails()) {
-        return response([ 'errors' => $validator->errors()->all(), 422]);
-      }
 
 
       $email = $data->email;
@@ -151,19 +145,15 @@ class ReservationController extends Controller
      */
     public function update(Request $data, $id) {
 
-      $validator = Validator::make($data->all(), [
+
+      $validateData = $data->validate([
         'name' => 'required|string|max:100',
         'email' => 'required|string|max:100',
         'phone' => 'required|string|max:25',
         'seats' => 'required|integer|max:250',
         'date' => 'required|string|max:100',
       ]);
-
-      if ($validator->fails()) {
-        return response([ 'errors' => $validator->errors()->all(), 422]);
-      }
-
-
+      
       $reservation = Reservation::findOrFail($id);
       $user = Auth::user();
       $reservation_owner = $reservation->owner->id;

@@ -13,26 +13,38 @@
               <div class="dialog-c-text">
                 <div class="md-form">
                     <i class="fa fa-user prefix"></i>
-                    <input v-model="data.name" type="text" id="form22" class="form-control">
-                    <label class="active" for="form42">Your name</label>
+                    <input v-model="data.name" v-validate="'required|min:4|max:50'" type="text" name="name" id="name" class="form-control">
+                    <label class="active" for="name">Your name</label>
+                    <div v-if="submitted && errors.has('name')" class="invalid-feedback">
+                      {{ errors.first('name') }}
+                    </div>
                 </div>
 
                 <div class="md-form">
                     <i class="fa fa-envelope prefix"></i>
-                    <input disabled v-model="data.email" type="text" id="form32" class="form-control">
-                    <label class="active" for="form34">Your email</label>
+                    <input disabled v-model="data.email" v-validate="'required|email|max:50'" type="email" name="email" id="email" class="form-control">
+                    <label class="active" for="email">Your email</label>
+                    <div v-if="submitted && errors.has('email')" class="invalid-feedback">
+                      {{ errors.first('email') }}
+                    </div>
                 </div>
 
                 <div class="md-form">
                     <i class="fa fa-tag prefix"></i>
-                    <input v-model="data.subject" type="text" id="form32" class="form-control">
-                    <label class="active" for="form34">Subject</label>
+                    <input v-model="data.subject" v-validate="'required|max:150'" type="text" name="subject" id="subject" class="form-control">
+                    <label class="active" for="subject">Subject</label>
+                    <div v-if="submitted && errors.has('subject')" class="invalid-feedback">
+                      {{ errors.first('subject') }}
+                    </div>
                 </div>
 
                 <div class="md-form">
                     <i class="fa fa-pencil prefix"></i>
-                    <textarea v-model="data.message" type="text" id="form8" class="md-textarea"></textarea>
-                    <label class="active" for="form8">Textarea</label>
+                    <textarea v-model="data.message" v-validate="'required|max:255'" type="text" name="message" id="message" class="md-textarea"></textarea>
+                    <label class="active" for="message">Message</label>
+                    <div v-if="submitted && errors.has('message')" class="invalid-feedback">
+                      {{ errors.first('message') }}
+                    </div>
                 </div>
 
               </div>
@@ -55,27 +67,33 @@ export default {
 
   props: {data: Object},
 
+  data() {
+    return {
+      submitted: false,
+      complete: false,
+    }
+  },
+
   methods: {
 
-    hide() {
-      this.$modal.hide('editReservation');
-    },
-
     async update() {
-      this.status = 'loading';
+      this.submitted = true;
       let payload = this.data;
 
-      axios.post(`http://localhost:8000/message/${payload.id}/update`, payload)
-            .then((response) => {
-              this.$emit('close');
-              this.flash(response.data, 'success');
-            })
-            .catch((err) => {
-              this.flash(err, 'error');
-            });
-
-
-
+      this.$validator.validate().then(
+        valid => {
+          if (valid) {
+            axios.post(`http://localhost:8000/message/${payload.id}/update`, payload)
+              .then((response) => {
+                this.$emit('close');
+                this.flash(response.data, 'success');
+              })
+              .catch((err) => {
+                this.flash(err, 'error');
+              });
+          }
+        }
+      )
     }
   }
 }
