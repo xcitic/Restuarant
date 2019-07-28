@@ -18,7 +18,7 @@
 
                   <div class="md-form">
                       <i class="fa fa-user prefix"></i>
-                      <input v-model.trim="input.name" v-validate="'required|min:4|max:50'" id="name" name="name" type="text" class="form-control">
+                      <input v-model.trim="input.name" v-validate="'required|alpha_spaces|min:4|max:50'" id="name" name="name" type="text" class="form-control">
                       <label for="name">Your name</label>
                       <div v-if="submitted && errors.has('name')" class="invalid-feedback">
                         {{ errors.first('name') }}
@@ -27,7 +27,7 @@
 
                   <div class="md-form">
                       <i class="fa fa-envelope prefix"></i>
-                      <input v-model="input.email" v-validate="'required|email|max:50'" name="email" id="email" type="email" class="form-control">
+                      <input v-model.trim="input.email" v-validate="'required|email|max:50'" name="email" id="email" type="email" class="form-control">
                       <label for="email">Your email</label>
                       <div v-if="submitted && errors.has('email')" class="invalid-feedback">
                         {{ errors.first('email') }}
@@ -36,7 +36,7 @@
 
                   <div class="md-form">
                       <i class="fa fa-tag prefix"></i>
-                      <input v-model.trim="input.subject" v-validate="'required|max:150'" name="subject" type="text" id="subject" class="form-control">
+                      <input v-model.trim="input.subject" v-validate="'required|alpha_spaces|max:150'" name="subject" type="text" id="subject" class="form-control">
                       <label for="subject">Subject</label>
                       <div v-if="submitted && errors.has('subject')" class="invalid-feedback">
                         {{ errors.first('subject') }}
@@ -45,7 +45,7 @@
 
                   <div class="md-form">
                       <i class="fa fa-pencil prefix"></i>
-                      <textarea v-model.trim="input.message" v-validate="'required|max:255'" name="message" type="text" id="message" class="md-textarea"></textarea>
+                      <textarea v-model.trim="input.message" v-validate="'required|alpha_spaces|max:255'" name="message" type="text" id="message" class="md-textarea"></textarea>
                       <label for="textarea">Textarea</label>
                       <div v-if="submitted && errors.has('message')" class="invalid-feedback">
                         {{ errors.first('message') }}

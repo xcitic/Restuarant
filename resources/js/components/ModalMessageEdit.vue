@@ -13,7 +13,7 @@
               <div class="dialog-c-text">
                 <div class="md-form">
                     <i class="fa fa-user prefix"></i>
-                    <input v-model="data.name" v-validate="'required|min:4|max:50'" type="text" name="name" id="name" class="form-control">
+                    <input v-model="data.name" v-validate="'required|alpha_spaces|min:4|max:50'" type="text" name="name" id="name" class="form-control">
                     <label class="active" for="name">Your name</label>
                     <div v-if="submitted && errors.has('name')" class="invalid-feedback">
                       {{ errors.first('name') }}
@@ -31,7 +31,7 @@
 
                 <div class="md-form">
                     <i class="fa fa-tag prefix"></i>
-                    <input v-model="data.subject" v-validate="'required|max:150'" type="text" name="subject" id="subject" class="form-control">
+                    <input v-model="data.subject" v-validate="'required|alpha_spaces|max:150'" type="text" name="subject" id="subject" class="form-control">
                     <label class="active" for="subject">Subject</label>
                     <div v-if="submitted && errors.has('subject')" class="invalid-feedback">
                       {{ errors.first('subject') }}
@@ -40,7 +40,7 @@
 
                 <div class="md-form">
                     <i class="fa fa-pencil prefix"></i>
-                    <textarea v-model="data.message" v-validate="'required|max:255'" type="text" name="message" id="message" class="md-textarea"></textarea>
+                    <textarea v-model="data.message" v-validate="'required|alpha_spaces|max:255'" type="text" name="message" id="message" class="md-textarea"></textarea>
                     <label class="active" for="message">Message</label>
                     <div v-if="submitted && errors.has('message')" class="invalid-feedback">
                       {{ errors.first('message') }}

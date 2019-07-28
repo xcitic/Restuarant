@@ -2563,6 +2563,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2581,7 +2596,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         seats: 1,
         date: ''
       },
-      status: ''
+      submitted: false,
+      complete: false
     };
   },
   methods: {
@@ -2596,12 +2612,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.status = 'loading';
+                this.submitted = true;
                 payload = this.input;
-                axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/reservation', payload).then(function (response) {
-                  _this.flash(response.data, 'success');
-                })["catch"](function (err) {
-                  _this.flash(err, 'error');
+                this.$validator.validate().then(function (valid) {
+                  if (valid) {
+                    _this.complete = true;
+                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/reservation', payload).then(function (response) {
+                      _this.flash(response.data, 'success');
+                    })["catch"](function (err) {
+                      _this.flash(err, 'error');
+                    });
+                  }
                 });
 
               case 3:
@@ -2709,6 +2730,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2720,6 +2755,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   components: {
     DatePicker: vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_2__["default"],
     RangeSlider: vue_range_slider__WEBPACK_IMPORTED_MODULE_3___default.a
+  },
+  data: function data() {
+    return {
+      submitted: false,
+      complete: false
+    };
   },
   methods: {
     update: function () {
@@ -2733,14 +2774,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.status = 'loading';
+                this.submitted = true;
                 payload = this.data;
-                axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://localhost:8000/reservation/".concat(payload.id, "/update"), payload).then(function (response) {
-                  _this.$emit('close');
+                this.$validator.validate().then(function (valid) {
+                  if (valid) {
+                    _this.complete = true;
+                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://localhost:8000/reservation/".concat(payload.id, "/update"), payload).then(function (response) {
+                      _this.$emit('close');
 
-                  _this.flash(response.data, 'success');
-                })["catch"](function (err) {
-                  _this.flash(err, 'error');
+                      _this.flash(response.data, 'success');
+                    })["catch"](function (err) {
+                      _this.flash(err, 'error');
+                    });
+                  }
                 });
 
               case 3:
@@ -3689,7 +3735,7 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 
 // module
-exports.push([module.i, "\n.year-month-wrapper[data-v-4bd11526]{\n  background-color: #ed4d00;\n}\ninput[data-v-4bd11526]{\n  min-width: 226px;\n  width:100%;\n  height: 30px;\n  padding: 3px;\n  border: 1px solid #ddd;\n}\n.datetime-picker[data-v-4bd11526]{\n  position: relative;\n}\n.calender-div[data-v-4bd11526]{\n  min-width: 270px;\n  box-shadow: 1px 2px 5px #ccc;\n  background: #FFF;\n  position: absolute;\n  display: inline-block;\n  left: 0;\n  top: 35px;\n  color: #444;\n  font-size: 14px;\n  padding-bottom: 10px;\n  z-index: 100;\n}\n.port[data-v-4bd11526], .days[data-v-4bd11526]{\n  display: inline-block;\n  width: 30px;\n  height: 30px;\n  padding: 5px 3px;\n  margin: 2px;\n  border-radius: 2px;\n  text-align: center;\n  vertical-align: top;\n  cursor: pointer;\n}\n.days[data-v-4bd11526]{\n  color: #ed4d00;\n  font-weight: bold;\n}\n.port[data-v-4bd11526]:hover{\n  color: #ed4d00;\n  font-weight: bold;\n}\n.activePort[data-v-4bd11526], .activePort[data-v-4bd11526]:hover {\n  background-color: #ed4d00;\n  color: white;\n}\n.month-setter[data-v-4bd11526], .year-setter[data-v-4bd11526]{\n  margin: 0 1px;\n  width: 48.2%;\n  color: white;\n  font-weight: 900;\n  display: inline-block;\n}\n.nav-l[data-v-4bd11526]:hover, .nav-r[data-v-4bd11526]:hover {\n  background-color: #dc3c00;\n}\n.nav-l[data-v-4bd11526], .nav-r[data-v-4bd11526] {\n  display: inline-block;\n  width: 25px;\n  background-color: #ed4d00;\n  color: white;\n  font-size: 16px;\n  cursor: pointer;\n  border: 0;\n  padding: 7px;\n  margin:0;\n}\n.nav-l[data-v-4bd11526]:focus, .nav-r[data-v-4bd11526]:focus{\n  outline: none;\n}\n.nav-l[data-v-4bd11526]{\n  float: left;\n}\n.nav-r[data-v-4bd11526]{\n  float: right;\n}\n.month[data-v-4bd11526], .year[data-v-4bd11526]{\n  width: 40px;\n  text-align: right;\n  display: inline-block;\n  color: white;\n  padding: 7px 0;\n}\n.headers>span[data-v-4bd11526]{\n}\n.hour-selector[data-v-4bd11526], .minute-selector[data-v-4bd11526]{\n  width: 30px;\n  display: inline-block;\n  text-align: center;\n  font-weight: bold;\n  position: relative;\n  cursor: pointer;\n}\n.time-separator[data-v-4bd11526]{\n  display: inline-block;\n  font-weight: bold;\n}\n.time-picker[data-v-4bd11526]{\n  margin: 10px\n}\n.nav-t[data-v-4bd11526], .nav-d[data-v-4bd11526]{\n  font-weight: bold;\n  cursor: pointer;\n}\n.scroll-hider[data-v-4bd11526] {\n  display: none;\n  vertical-align:top;\n  overflow:hidden;\n  border:0;\n  position: absolute;\n  top: -40px;\n  left: 0;\n  box-shadow: 0 0 3px #333;\n  background-color: white;\n}\n.scroll-hider ul[data-v-4bd11526] {\n  padding:5px;\n  margin:-5px -13px -5px -5px;\n  list-style-type: none;\n  height: 100px;\n  overflow: auto;\n  width:55px;\n  color: #999;\n  overflow-x: hidden;\n}\n.showSelector[data-v-4bd11526]{\n  display:inline-block;\n}\nli.active[data-v-4bd11526]{\n  background-color: #ed4d00;\n  color: white;\n}\nli[data-v-4bd11526]{\n  padding: 4px;\n  font-size: 16px;\n  width: 100%;\n  cursor: pointer;\n}\n.time-picker[data-v-4bd11526]{\n  display: inline-block;\n}\n.noDisplay[data-v-4bd11526]{\n  display: none;\n}\n.okButton[data-v-4bd11526]{\n  color: #ed4d00;\n  font-size: 15px;\n  font-weight: bold;\n  padding: 0;\n  float: right;\n  border: 0;\n  margin-right: 10px;\n  margin-top: 10px;\n  cursor: pointer;\n  background: transparent;\n}\n", ""]);
+exports.push([module.i, "\n.year-month-wrapper[data-v-4bd11526]{\n  background-color: #ed4d00;\n}\ninput[data-v-4bd11526]{\n  min-width: 226px;\n  width:100%;\n  height: 30px;\n  padding: 3px;\n  border: 1px solid #ddd;\n}\n.datetime-picker[data-v-4bd11526]{\n  position: relative;\n}\n.calender-div[data-v-4bd11526]{\n  min-width: 270px;\n  box-shadow: 1px 2px 5px #ccc;\n  background: #FFF;\n  position: fixed;\n  display: inline-block;\n  left: auto;\n  top: auto;\n  color: #444;\n  font-size: 14px;\n  padding-bottom: 10px;\n  z-index: 100;\n}\n.port[data-v-4bd11526], .days[data-v-4bd11526]{\n  display: inline-block;\n  width: 30px;\n  height: 30px;\n  padding: 5px 3px;\n  margin: 2px;\n  border-radius: 2px;\n  text-align: center;\n  vertical-align: top;\n  cursor: pointer;\n}\n.days[data-v-4bd11526]{\n  color: #ed4d00;\n  font-weight: bold;\n}\n.port[data-v-4bd11526]:hover{\n  color: #ed4d00;\n  font-weight: bold;\n}\n.activePort[data-v-4bd11526], .activePort[data-v-4bd11526]:hover {\n  background-color: #ed4d00;\n  color: white;\n}\n.month-setter[data-v-4bd11526], .year-setter[data-v-4bd11526]{\n  margin: 0 1px;\n  width: 48.2%;\n  color: white;\n  font-weight: 900;\n  display: inline-block;\n}\n.nav-l[data-v-4bd11526]:hover, .nav-r[data-v-4bd11526]:hover {\n  background-color: #dc3c00;\n}\n.nav-l[data-v-4bd11526], .nav-r[data-v-4bd11526] {\n  display: inline-block;\n  width: 25px;\n  background-color: #ed4d00;\n  color: white;\n  font-size: 16px;\n  cursor: pointer;\n  border: 0;\n  padding: 7px;\n  margin:0;\n}\n.nav-l[data-v-4bd11526]:focus, .nav-r[data-v-4bd11526]:focus{\n  outline: none;\n}\n.nav-l[data-v-4bd11526]{\n  float: left;\n}\n.nav-r[data-v-4bd11526]{\n  float: right;\n}\n.month[data-v-4bd11526], .year[data-v-4bd11526]{\n  width: 40px;\n  text-align: right;\n  display: inline-block;\n  color: white;\n  padding: 7px 0;\n}\n.headers>span[data-v-4bd11526]{\n}\n.hour-selector[data-v-4bd11526], .minute-selector[data-v-4bd11526]{\n  width: 30px;\n  display: inline-block;\n  text-align: center;\n  font-weight: bold;\n  position: relative;\n  cursor: pointer;\n}\n.time-separator[data-v-4bd11526]{\n  display: inline-block;\n  font-weight: bold;\n}\n.time-picker[data-v-4bd11526]{\n  margin: 10px\n}\n.nav-t[data-v-4bd11526], .nav-d[data-v-4bd11526]{\n  font-weight: bold;\n  cursor: pointer;\n}\n.scroll-hider[data-v-4bd11526] {\n  display: none;\n  vertical-align:top;\n  overflow:hidden;\n  border:0;\n  position: absolute;\n  top: -40px;\n  left: 0;\n  box-shadow: 0 0 3px #333;\n  background-color: white;\n}\n.scroll-hider ul[data-v-4bd11526] {\n  padding:5px;\n  margin:-5px -13px -5px -5px;\n  list-style-type: none;\n  height: 100px;\n  overflow: auto;\n  width:55px;\n  color: #999;\n  overflow-x: hidden;\n}\n.showSelector[data-v-4bd11526]{\n  display:inline-block;\n}\nli.active[data-v-4bd11526]{\n  background-color: #ed4d00;\n  color: white;\n}\nli[data-v-4bd11526]{\n  padding: 4px;\n  font-size: 16px;\n  width: 100%;\n  cursor: pointer;\n}\n.time-picker[data-v-4bd11526]{\n  display: inline-block;\n}\n.noDisplay[data-v-4bd11526]{\n  display: none;\n}\n.okButton[data-v-4bd11526]{\n  color: #ed4d00;\n  font-size: 15px;\n  font-weight: bold;\n  padding: 0;\n  float: right;\n  border: 0;\n  margin-right: 10px;\n  margin-top: 10px;\n  cursor: pointer;\n  background: transparent;\n}\n", ""]);
 
 // exports
 
@@ -19674,8 +19720,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: "required|min:4|max:50",
-                    expression: "'required|min:4|max:50'"
+                    value: "required|alpha_spaces|min:4|max:50",
+                    expression: "'required|alpha_spaces|min:4|max:50'"
                   }
                 ],
                 staticClass: "form-control",
@@ -19714,9 +19760,10 @@ var render = function() {
                 directives: [
                   {
                     name: "model",
-                    rawName: "v-model",
+                    rawName: "v-model.trim",
                     value: _vm.input.email,
-                    expression: "input.email"
+                    expression: "input.email",
+                    modifiers: { trim: true }
                   },
                   {
                     name: "validate",
@@ -19733,7 +19780,10 @@ var render = function() {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.input, "email", $event.target.value)
+                    _vm.$set(_vm.input, "email", $event.target.value.trim())
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
                   }
                 }
               }),
@@ -19766,8 +19816,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: "required|max:150",
-                    expression: "'required|max:150'"
+                    value: "required|alpha_spaces|max:150",
+                    expression: "'required|alpha_spaces|max:150'"
                   }
                 ],
                 staticClass: "form-control",
@@ -19814,8 +19864,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: "required|max:255",
-                    expression: "'required|max:255'"
+                    value: "required|alpha_spaces|max:255",
+                    expression: "'required|alpha_spaces|max:255'"
                   }
                 ],
                 staticClass: "md-textarea",
@@ -19982,8 +20032,8 @@ var render = function() {
               {
                 name: "validate",
                 rawName: "v-validate",
-                value: "required|min:4|max:50",
-                expression: "'required|min:4|max:50'"
+                value: "required|alpha_spaces|min:4|max:50",
+                expression: "'required|alpha_spaces|min:4|max:50'"
               }
             ],
             staticClass: "form-control",
@@ -20074,8 +20124,8 @@ var render = function() {
               {
                 name: "validate",
                 rawName: "v-validate",
-                value: "required|max:150",
-                expression: "'required|max:150'"
+                value: "required|alpha_spaces|max:150",
+                expression: "'required|alpha_spaces|max:150'"
               }
             ],
             staticClass: "form-control",
@@ -20120,8 +20170,8 @@ var render = function() {
               {
                 name: "validate",
                 rawName: "v-validate",
-                value: "required|max:255",
-                expression: "'required|max:255'"
+                value: "required|alpha_spaces|max:255",
+                expression: "'required|alpha_spaces|max:255'"
               }
             ],
             staticClass: "md-textarea",
@@ -20385,10 +20435,16 @@ var render = function() {
                     rawName: "v-model",
                     value: _vm.input.name,
                     expression: "input.name"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: "required|alpha_spaces|max:50",
+                    expression: "'required|alpha_spaces|max:50'"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "form22", required: "" },
+                attrs: { type: "text", name: "name", id: "name" },
                 domProps: { value: _vm.input.name },
                 on: {
                   input: function($event) {
@@ -20400,9 +20456,17 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { attrs: { for: "form42" } }, [
-                _vm._v("Your Full Name")
-              ])
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Your Name")]),
+              _vm._v(" "),
+              _vm.submitted && _vm.errors.has("name")
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                      " +
+                        _vm._s(_vm.errors.first("name")) +
+                        "\n                    "
+                    )
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "md-form" }, [
@@ -20413,10 +20477,16 @@ var render = function() {
                     rawName: "v-model",
                     value: _vm.input.email,
                     expression: "input.email"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: "required|email|max:50",
+                    expression: "'required|email|max:50'"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "email", id: "form32", required: "" },
+                attrs: { type: "email", name: "email", id: "email" },
                 domProps: { value: _vm.input.email },
                 on: {
                   input: function($event) {
@@ -20428,7 +20498,17 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { attrs: { for: "form34" } }, [_vm._v("Your Email")])
+              _c("label", { attrs: { for: "email" } }, [_vm._v("Your Email")]),
+              _vm._v(" "),
+              _vm.submitted && _vm.errors.has("email")
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                      " +
+                        _vm._s(_vm.errors.first("email")) +
+                        "\n                    "
+                    )
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "md-form" }, [
@@ -20439,10 +20519,16 @@ var render = function() {
                     rawName: "v-model",
                     value: _vm.input.phone,
                     expression: "input.phone"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: "required|numeric",
+                    expression: "'required|numeric'"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text", id: "form32", required: "" },
+                attrs: { type: "text", name: "phone", id: "phone" },
                 domProps: { value: _vm.input.phone },
                 on: {
                   input: function($event) {
@@ -20454,9 +20540,19 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { attrs: { for: "form34" } }, [
+              _c("label", { attrs: { for: "phone" } }, [
                 _vm._v("Your Phone Number")
-              ])
+              ]),
+              _vm._v(" "),
+              _vm.submitted && _vm.errors.has("phone")
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                      " +
+                        _vm._s(_vm.errors.first("phone")) +
+                        "\n                    "
+                    )
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c(
@@ -20470,9 +20566,15 @@ var render = function() {
                       rawName: "v-model",
                       value: _vm.input.seats,
                       expression: "input.seats"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|numeric|max_value:250",
+                      expression: "'required|numeric|max_value:250'"
                     }
                   ],
-                  attrs: { type: "number" },
+                  attrs: { type: "number", name: "seats" },
                   domProps: { value: _vm.input.seats },
                   on: {
                     input: function($event) {
@@ -20498,7 +20600,17 @@ var render = function() {
                     },
                     expression: "input.seats"
                   }
-                })
+                }),
+                _vm._v(" "),
+                _vm.submitted && _vm.errors.has("seats")
+                  ? _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n                      " +
+                          _vm._s(_vm.errors.first("seats")) +
+                          "\n                    "
+                      )
+                    ])
+                  : _vm._e()
               ],
               1
             ),
@@ -20510,7 +20622,19 @@ var render = function() {
                 _vm._m(1),
                 _vm._v(" "),
                 _c("Datepicker", {
-                  attrs: { format: "YYYY-MM-DD H:i:s", width: "100%" },
+                  directives: [
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|max:50",
+                      expression: "'required|max:50'"
+                    }
+                  ],
+                  attrs: {
+                    format: "DD-MM-YYYY H:i:s",
+                    width: "100%",
+                    name: "date"
+                  },
                   model: {
                     value: _vm.input.date,
                     callback: function($$v) {
@@ -20518,7 +20642,17 @@ var render = function() {
                     },
                     expression: "input.date"
                   }
-                })
+                }),
+                _vm._v(" "),
+                _vm.submitted && _vm.errors.has("date")
+                  ? _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.errors.first("date")) +
+                          "\n                  "
+                      )
+                    ])
+                  : _vm._e()
               ],
               1
             ),
@@ -20528,8 +20662,7 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-lg btn-info waves-effect",
-                  class: _vm.status == "loading" ? "disabled" : "",
-                  attrs: { "data-dismiss": "modal" },
+                  attrs: { "data-dismiss": _vm.complete ? "modal" : "" },
                   on: { click: _vm.submit }
                 },
                 [_vm._v("Send Information")]
@@ -20661,10 +20794,16 @@ var render = function() {
                 rawName: "v-model",
                 value: _vm.data.name,
                 expression: "data.name"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required|alpha_spaces|max:50",
+                expression: "'required|alpha_spaces|max:50'"
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "text", id: "form22" },
+            attrs: { type: "text", id: "name", name: "name" },
             domProps: { value: _vm.data.name },
             on: {
               input: function($event) {
@@ -20676,9 +20815,19 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { staticClass: "active", attrs: { for: "form42" } }, [
+          _c("label", { staticClass: "active", attrs: { for: "name" } }, [
             _vm._v("Name")
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.submitted && _vm.errors.has("name")
+            ? _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\n                  " +
+                    _vm._s(_vm.errors.first("name")) +
+                    "\n                "
+                )
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "md-form" }, [
@@ -20689,10 +20838,16 @@ var render = function() {
                 rawName: "v-model",
                 value: _vm.data.email,
                 expression: "data.email"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required|email|max:50",
+                expression: "'required|email|max:50'"
               }
             ],
             staticClass: "form-control",
-            attrs: { disabled: "", type: "text", id: "form32" },
+            attrs: { disabled: "", type: "email", name: "email", id: "email" },
             domProps: { value: _vm.data.email },
             on: {
               input: function($event) {
@@ -20704,9 +20859,19 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { staticClass: "active", attrs: { for: "form34" } }, [
+          _c("label", { staticClass: "active", attrs: { for: "email" } }, [
             _vm._v("Email")
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.submitted && _vm.errors.has("email")
+            ? _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\n                  " +
+                    _vm._s(_vm.errors.first("email")) +
+                    "\n                "
+                )
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "md-form" }, [
@@ -20717,10 +20882,16 @@ var render = function() {
                 rawName: "v-model",
                 value: _vm.data.phone,
                 expression: "data.phone"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required|numeric",
+                expression: "'required|numeric'"
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "text", id: "form32" },
+            attrs: { type: "text", name: "phone", id: "phone" },
             domProps: { value: _vm.data.phone },
             on: {
               input: function($event) {
@@ -20732,9 +20903,19 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { staticClass: "active", attrs: { for: "form34" } }, [
-            _vm._v("Phone")
-          ])
+          _c("label", { staticClass: "active", attrs: { for: "phone" } }, [
+            _vm._v("Phone Number")
+          ]),
+          _vm._v(" "),
+          _vm.submitted && _vm.errors.has("phone")
+            ? _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\n                  " +
+                    _vm._s(_vm.errors.first("phone")) +
+                    "\n                "
+                )
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c(
@@ -20748,9 +20929,15 @@ var render = function() {
                   rawName: "v-model",
                   value: _vm.data.seats,
                   expression: "data.seats"
+                },
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: "required|numeric|max_value:250",
+                  expression: "'required|numeric|max_value:250'"
                 }
               ],
-              attrs: { type: "number" },
+              attrs: { type: "number", name: "seats" },
               domProps: { value: _vm.data.seats },
               on: {
                 input: function($event) {
@@ -20776,7 +20963,17 @@ var render = function() {
                 },
                 expression: "data.seats"
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.submitted && _vm.errors.has("seats")
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                  " +
+                      _vm._s(_vm.errors.first("seats")) +
+                      "\n                "
+                  )
+                ])
+              : _vm._e()
           ],
           1
         ),
@@ -20788,8 +20985,20 @@ var render = function() {
             _vm._m(0),
             _vm._v(" "),
             _c("DatePicker", {
+              directives: [
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: "required|max:50",
+                  expression: "'required|max:50'"
+                }
+              ],
               staticClass: "date-imbedded",
-              attrs: { format: "YYYY-MM-DD H:i:s", width: "auto" },
+              attrs: {
+                format: "DD-MM-YYYY H:i:s",
+                width: "auto",
+                name: "date"
+              },
               model: {
                 value: _vm.data.date,
                 callback: function($$v) {
@@ -20797,7 +21006,17 @@ var render = function() {
                 },
                 expression: "data.date"
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.submitted && _vm.errors.has("date")
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.errors.first("date")) +
+                      "\n              "
+                  )
+                ])
+              : _vm._e()
           ],
           1
         )

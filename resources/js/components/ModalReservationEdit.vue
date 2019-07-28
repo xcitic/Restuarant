@@ -12,22 +12,31 @@
               <!--Body-->
               <div class="dialog-c-text">
                   <div class="md-form">
-                      <input v-model="data.name" type="text" id="form22" class="form-control">
-                      <label for="form42" class="active">Name</label>
+                      <input v-model="data.name" v-validate="'required|alpha_spaces|max:50'" type="text" id="name" name="name" class="form-control">
+                      <label for="name" class="active">Name</label>
+                      <div v-if="submitted && errors.has('name')" class="invalid-feedback">
+                        {{ errors.first('name') }}
+                      </div>
                   </div>
 
                   <div class="md-form">
-                      <input disabled v-model="data.email" type="text" id="form32" class="form-control">
-                      <label for="form34" class="active">Email</label>
+                      <input disabled v-model="data.email" v-validate="'required|email|max:50'" type="email" name="email" id="email" class="form-control">
+                      <label for="email" class="active">Email</label>
+                      <div v-if="submitted && errors.has('email')" class="invalid-feedback">
+                        {{ errors.first('email') }}
+                      </div>
                   </div>
 
                   <div class="md-form">
-                      <input v-model="data.phone" type="text" id="form32" class="form-control">
-                      <label for="form34" class="active">Phone</label>
+                      <input v-model="data.phone" v-validate="'required|numeric'" type="text" name="phone" id="phone" class="form-control">
+                      <label for="phone" class="active">Phone Number</label>
+                      <div v-if="submitted && errors.has('phone')" class="invalid-feedback">
+                        {{ errors.first('phone') }}
+                      </div>
                   </div>
 
                   <div class="mt-2 mb-1 md-form">
-                    <input type="number" v-model="data.seats" />
+                    <input type="number" v-model="data.seats" name="seats" v-validate="'required|numeric|max_value:250'" />
                     <label for="seats" class="active">Number of seats</label>
                     <range-slider
                       class="slider mt-1"
@@ -36,6 +45,9 @@
                       step="1"
                       v-model="data.seats"
                       ></range-slider>
+                      <div v-if="submitted && errors.has('seats')" class="invalid-feedback">
+                        {{ errors.first('seats') }}
+                      </div>
 
                   </div>
 
@@ -44,8 +56,10 @@
                         <label for="datepicker" class="mb-1">Choose date and time </label>
                     </div>
 
-                    <DatePicker format="YYYY-MM-DD H:i:s" width="auto" class="date-imbedded" v-model="data.date"/>
-
+                    <DatePicker format="DD-MM-YYYY H:i:s" width="auto" v-validate="'required|max:50'" name="date" class="date-imbedded" v-model="data.date"/>
+                    <div v-if="submitted && errors.has('date')" class="invalid-feedback">
+                      {{ errors.first('date') }}
+                    </div>
                 </div>
 
               </div>
@@ -77,20 +91,36 @@ export default {
     RangeSlider
   },
 
+  data() {
+    return {
+      submitted: false,
+      complete: false,
+    }
+  },
+
   methods: {
 
     async update() {
-      this.status = 'loading';
+      this.submitted = true;
       let payload = this.data;
 
-      axios.post(`http://localhost:8000/reservation/${payload.id}/update`, payload)
-            .then((response) => {
-              this.$emit('close');
-              this.flash(response.data, 'success');
-            })
-            .catch((err) => {
-              this.flash(err, 'error');
-            });
+      this.$validator.validate().then(
+        valid => {
+          if (valid) {
+            this.complete = true;
+
+            axios.post(`http://localhost:8000/reservation/${payload.id}/update`, payload)
+              .then((response) => {
+                this.$emit('close');
+                this.flash(response.data, 'success');
+              })
+              .catch((err) => {
+                this.flash(err, 'error');
+              });
+          }
+      });
+
+
 
     }
   }

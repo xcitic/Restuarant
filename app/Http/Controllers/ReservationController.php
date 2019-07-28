@@ -153,7 +153,7 @@ class ReservationController extends Controller
         'seats' => 'required|integer|max:250',
         'date' => 'required|string|max:100',
       ]);
-      
+
       $reservation = Reservation::findOrFail($id);
       $user = Auth::user();
       $reservation_owner = $reservation->owner->id;
