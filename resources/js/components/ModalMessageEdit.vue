@@ -50,9 +50,6 @@
 <script>
 import axios from 'axios';
 
-$(document).ready(function() {
-  $('.mdb-select').material_select();
-});
 
 
 

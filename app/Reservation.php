@@ -13,7 +13,8 @@ class Reservation extends Model
       'name',
       'email',
       'phone',
-      'people'
+      'seats',
+      'date'
     ];
 
 

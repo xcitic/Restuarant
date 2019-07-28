@@ -1790,6 +1790,11 @@ cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
 
+date-fns@^1.29.0:
+  version "1.30.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
+  integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
+
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
@@ -5569,9 +5574,17 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
 
-vue@^2.5.17:
+vue@^2.3.3, vue@^2.5.17:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
+
+vuejs-datetimepicker@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/vuejs-datetimepicker/-/vuejs-datetimepicker-1.1.11.tgz#98408cf3a5eead6a68eca4d6562c782b9f139456"
+  integrity sha512-yZ4PpYf1Y/SKgAiDXrLl72A8Krdh0LyAPyUuEQECnF9PG/aZRUdq8Z/09MRXX6OqFZ2K9HuWOgia5fqdjPWygw==
+  dependencies:
+    date-fns "^1.29.0"
+    vue "^2.3.3"
 
 watchpack@^1.5.0:
   version "1.6.0"

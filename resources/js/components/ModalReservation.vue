@@ -13,17 +13,17 @@
               <!--Body-->
               <div class="modal-body">
                   <div class="md-form">
-                      <input v-model="input.name" type="text" id="form22" class="form-control">
+                      <input v-model="input.name" type="text" id="form22" class="form-control" required>
                       <label for="form42">Your Full Name</label>
                   </div>
 
                   <div class="md-form">
-                      <input v-model="input.email" type="text" id="form32" class="form-control">
+                      <input v-model="input.email" type="email" id="form32" class="form-control" required>
                       <label for="form34">Your Email</label>
                   </div>
 
                   <div class="md-form">
-                      <input v-model="input.phone" type="text" id="form32" class="form-control">
+                      <input v-model="input.phone" type="text" id="form32" class="form-control" required>
                       <label for="form34">Your Phone Number</label>
                   </div>
 
@@ -33,6 +33,15 @@
                       <option value="3">Three Persons</option>
                       <option value="4">More</option>
                   </select>
+
+                  <div class='col-md-12 mb-2'>
+                    <div class="">
+                        <label for="datepicker" class="mb-1">Choose date and time </label>
+                    </div>
+
+                    <Datepicker format="YYYY-MM-DD H:i:s" width="100%" v-model="input.date"/>
+
+                </div>
 
                   <div class="text-center">
                       <button @click="submit" data-dismiss="modal" class="btn btn-lg btn-info waves-effect" :class="status == 'loading' ? 'disabled' : ''">Send Information</button>
@@ -56,8 +65,14 @@
 
 <script>
 import axios from 'axios';
+import Datepicker from 'vuejs-datetimepicker';
+
 
 export default {
+
+  components: {
+    Datepicker
+  },
 
   data() {
     return {
@@ -65,7 +80,8 @@ export default {
         name: '',
         email: '',
         phone: '',
-        people: 1,
+        seats: 1,
+        date: ''
       },
       status: ''
     }

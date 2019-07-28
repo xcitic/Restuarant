@@ -33,10 +33,7 @@ class ReservationController extends Controller
 
       return response()->json($reservations, 200);
 
-
-
     }
-
 
 
     /**
@@ -54,12 +51,12 @@ class ReservationController extends Controller
       //
       // send email notification to user with reservation details and user login to change their details
 
-
       $validator = Validator::make($data->all(), [
         'name' => 'required|string|max:100',
         'email' => 'required|string|max:100',
         'phone' => 'required|string|max:25',
-        'people' => 'required|integer|max:250',
+        'seats' => 'required|integer|max:250',
+        'date' => 'required|string|max:100',
       ]);
 
 
@@ -72,7 +69,7 @@ class ReservationController extends Controller
       $email = $data->email;
 
       // If user does not exist
-      // Create a new user with a random password,
+      // Create a new user with a random password
       if (Auth::user()) {
         $user = Auth::user();
       } else {
@@ -103,7 +100,8 @@ class ReservationController extends Controller
           'name' => $data->name,
           'email' => $email,
           'phone' => $data->phone,
-          'people' => $data->people,
+          'seats' => $data->seats,
+          'date' => $data->date,
         ]);
 
         $reservation->save();
@@ -134,7 +132,8 @@ class ReservationController extends Controller
         'name' => 'required|string|max:100',
         'email' => 'required|string|max:100',
         'phone' => 'required|string|max:25',
-        'people' => 'required|integer|max:250',
+        'seats' => 'required|integer|max:250',
+        'date' => 'required|string|max:100',
       ]);
 
       if ($validator->fails()) {

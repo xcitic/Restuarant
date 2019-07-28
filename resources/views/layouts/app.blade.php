@@ -8,7 +8,7 @@
           <!-- CSRF Token -->
           <meta name="csrf-token" content="{{ csrf_token() }}">
 
-          <title>Le Monde Restuarant</title>
+          <title>Le Monde Restaurant</title>
 
 
           <!-- Fonts -->
@@ -66,6 +66,14 @@
                   $('html, body').animate({
                       scrollTop: 0
                   }, '300');
+              });
+          </script>
+
+          <script type="text/javascript">
+              $(function () {
+                  $('#datetimepicker2').datetimepicker({
+                      locale: 'no'
+                  });
               });
           </script>
 
