@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use App\User;
-use App\Mail\ReservationCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ReservationCreated;
 
 class ReservationController extends Controller
 {
@@ -76,6 +76,8 @@ class ReservationController extends Controller
         $user = User::where('email', $email)->first();
       }
 
+      $newUser = false;
+
       if (!$user)
       {
         $password = $this->randomPassword(8);
@@ -89,7 +91,7 @@ class ReservationController extends Controller
 
         $user->save();
 
-        $createdUser = true;
+        $newUser = true;
       }
 
       // create the reservation
@@ -110,17 +112,32 @@ class ReservationController extends Controller
         // TODO
         //  Change ->send to ->queue
 
+        try {
+            if($newUser) {
+              Mail::to($email)->send(new ReservationCreated($reservation, $email, $password));
+            } else {
+              Mail::to($email)->send(new ReservationCreated($reservation, $email));
+            }
+
+        } catch (\Exception $e) {
+            return $e;
+        }
 
 
-        // if(!$createdUser) {
-        //   Mail::to($email)->send(new ReservationCreated($reservation, $email));
+
+        // try {
+        //
+        // } catch (\Exception $e) {
+        //   return response()->json($e, 500);
+        // }
+
+
         // } else {
         //   Mail::to($email)->send(new ReservationCreated($reservation, $email, $password));
         // }
 
         return response()->json('Your reservation has been saved. Thank you. An confirmation will soon be sent to: ' . $email . '', 200);
       }
-
 
 
     }

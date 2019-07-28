@@ -2681,9 +2681,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     RangeSlider: vue_range_slider__WEBPACK_IMPORTED_MODULE_3___default.a
   },
   methods: {
-    hide: function hide() {
-      this.$modal.hide('editReservation');
-    },
     update: function () {
       var _update = _asyncToGenerator(
       /*#__PURE__*/

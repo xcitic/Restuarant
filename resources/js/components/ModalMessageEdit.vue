@@ -51,8 +51,6 @@
 import axios from 'axios';
 
 
-
-
 export default {
 
   props: {data: Object},

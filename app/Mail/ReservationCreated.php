@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 
-use App\Order;
 use App\Reservation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -14,6 +13,11 @@ class ReservationCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+
+    public $reservation;
+    public $password;
+    public $email;
+
     /**
      * Create a new message instance.
      *
@@ -23,7 +27,7 @@ class ReservationCreated extends Mailable
     {
         $this->reservation = $reservation;
         $this->email = $email;
-        $this->user_password = $password;
+        $this->password = $password;
     }
 
     /**
@@ -33,6 +37,6 @@ class ReservationCreated extends Mailable
      */
     public function build()
     {
-        return $this->view('email.reservation');
+        return $this->markdown('emails.reservation');
     }
 }

@@ -79,10 +79,6 @@ export default {
 
   methods: {
 
-    hide() {
-      this.$modal.hide('editReservation');
-    },
-
     async update() {
       this.status = 'loading';
       let payload = this.data;
