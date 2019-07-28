@@ -27,7 +27,7 @@
                       <label for="form34">Your Phone Number</label>
                   </div>
 
-                  <div class="my-2 md-form">
+                  <div class="mt-2 mb-1 md-form">
                     <input type="number" v-model="input.seats" />
                     <label for="seats">Number of seats</label>
                     <range-slider
@@ -51,7 +51,7 @@
 
                   <div class="text-center">
                       <button @click="submit" data-dismiss="modal" class="btn btn-lg btn-info waves-effect" :class="status == 'loading' ? 'disabled' : ''">Send Information</button>
-                      <p class="text-muted">*Some dummy text goes here.</p>
+                      
 
                       <div class="call">
                           <p>Or you prefer book a table by phone? <span class="cf-phone"><i class="fa fa-phone"></i>+01 234 565 280</span></p>

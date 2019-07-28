@@ -46,7 +46,7 @@
                                     <td>{{item.name}}</td>
                                     <td>{{item.email}}</td>
                                     <td>{{item.updated_at}}</td>
-                                    <td>{{item.people}}</td>
+                                    <td>{{item.seats}}</td>
                                     <td>{{item.date}}</td>
                                     <td>
                                         <a class="teal-text" data-toggle="modal" data-placement="top" title="Edit" data-original-title="Edit" @click="modalReservation(index)"><i class="fa fa-pencil"></i></a>
@@ -164,6 +164,7 @@ export default {
 
     modalReservation(i) {
       let payload = this.reservations[i];
+      console.log(payload)
       this.$modal.show(editReservation, {
           data: payload
       }, {

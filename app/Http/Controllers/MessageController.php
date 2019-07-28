@@ -129,10 +129,11 @@ class MessageController extends Controller
       $user = Auth::user();
       $message_owner = $message->owner->id;
 
+      // Admin can edit everything, user can only edit what they own.
       if ($user->isAdmin()) {
         $message->update($data->all());
       }
-      elseif ($user_id === $message_owner) {
+      elseif ($user->id === $message_owner) {
 
         $message->update($data->all());
       }

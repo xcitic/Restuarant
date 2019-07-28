@@ -126,6 +126,12 @@ class ReservationController extends Controller
     }
 
 
+    /**
+     * Update a reservation
+     * @param  Request $data  Input from form
+     * @param  Integer  $id   Unique identifier
+     * @return JSON           Success or error message
+     */
     public function update(Request $data, $id) {
 
       $validator = Validator::make($data->all(), [
@@ -145,24 +151,20 @@ class ReservationController extends Controller
       $user = Auth::user();
       $reservation_owner = $reservation->owner->id;
 
+      // Admin can edit everything, user can only edit what they own.
       if ($user->isAdmin()) {
         $reservation->update($data->all());
       }
-      elseif ($user_id === $reservation_owner) {
-
+      elseif ($user->id === $reservation_owner) {
         $reservation->update($data->all());
       }
       else {
         return response()->json('Unauthorized', 401);
       }
 
-
-
-
       return response()->json('Successfully updated your reservation.', 200);
 
     }
-
 
     /**
      * Delete a reservation
@@ -193,11 +195,10 @@ class ReservationController extends Controller
 
     /**
      * Generate a cryptographical secure password
-     * @param  integer $length   Key length
+     * @param  integer $length   Number of character length to generate
      * @param  string $keyspace  Allowed characters
      * @return string
      */
-
     public function randomPassword($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
       $pieces = [];
       $max = mb_strlen($keyspace, '8bit') - 1;
@@ -206,7 +207,6 @@ class ReservationController extends Controller
       }
       return implode('', $pieces);
     }
-
 
 
 }

@@ -26,12 +26,27 @@
                       <label for="form34" class="active">Phone</label>
                   </div>
 
-                    <select v-model="data.people" class="mdb-select colorful-select dropdown-warning">
-                        <option value="1">One Person</option>
-                        <option value="2">Two Persons</option>
-                        <option value="3">Three Persons</option>
-                        <option value="4">More</option>
-                    </select>
+                  <div class="mt-2 mb-1 md-form">
+                    <input type="number" v-model="data.seats" />
+                    <label for="seats" class="active">Number of seats</label>
+                    <range-slider
+                      class="slider mt-1"
+                      min="1"
+                      max="250"
+                      step="1"
+                      v-model="data.seats"
+                      ></range-slider>
+
+                  </div>
+
+                  <div class='col-md-12 mb-2'>
+                    <div class="">
+                        <label for="datepicker" class="mb-1">Choose date and time </label>
+                    </div>
+
+                    <DatePicker format="YYYY-MM-DD H:i:s" width="auto" class="date-imbedded" v-model="data.date"/>
+
+                </div>
 
               </div>
 
@@ -47,16 +62,20 @@
 
 <script>
 import axios from 'axios';
-
-$(document).ready(function() {
-  $('.mdb-select').material_select();
-});
+import DatePicker from 'vuejs-datetimepicker';
+import RangeSlider from 'vue-range-slider';
+import 'vue-range-slider/dist/vue-range-slider.css';
 
 
 
 export default {
 
   props: {data: Object},
+
+  components: {
+    DatePicker,
+    RangeSlider
+  },
 
   methods: {
 
@@ -77,12 +96,20 @@ export default {
               this.flash(err, 'error');
             });
 
-
-
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
+.slider {
+  width: 100%
+}
+
+/* .date-imbedded {
+  left: auto;
+  position: fixed !important;
+  z-index: 9998;
+  top: auto;
+} */
 </style>
