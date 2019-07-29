@@ -57,7 +57,7 @@
                         <label for="datepicker" class="mb-1">Choose date and time </label>
                     </div>
 
-                    <Datepicker format="DD-MM-YYYY H:i:s" width="100%" v-model="input.date" v-validate="'required|max:50'" name="date"/>
+                    <Datepicker format="DD-MM-YYYY H:i:s" width="100%" v-model="input.date" />
                     <div v-if="submitted && errors.has('date')" class="invalid-feedback">
                       {{ errors.first('date') }}
                     </div>

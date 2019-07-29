@@ -31,7 +31,7 @@
 
                 <div class="md-form">
                     <i class="fa fa-tag prefix"></i>
-                    <input v-model="data.subject" v-validate="'required|alpha_spaces|max:150'" type="text" name="subject" id="subject" class="form-control">
+                    <input v-model="data.subject" v-validate="{required: true, regex: /^[A-Za-z0-9.,!' -]*$/ , max:100}" type="text" name="subject" id="subject" class="form-control">
                     <label class="active" for="subject">Subject</label>
                     <div v-if="submitted && errors.has('subject')" class="invalid-feedback">
                       {{ errors.first('subject') }}
@@ -40,7 +40,7 @@
 
                 <div class="md-form">
                     <i class="fa fa-pencil prefix"></i>
-                    <textarea v-model="data.message" v-validate="'required|alpha_spaces|max:255'" type="text" name="message" id="message" class="md-textarea"></textarea>
+                    <textarea v-model="data.message" v-validate="{required: true, regex: /^[A-Za-z0-9.,!' -]*$/ , max:255}" type="text" name="message" id="message" class="md-textarea"></textarea>
                     <label class="active" for="message">Message</label>
                     <div v-if="submitted && errors.has('message')" class="invalid-feedback">
                       {{ errors.first('message') }}

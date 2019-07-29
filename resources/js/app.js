@@ -18,7 +18,7 @@ Vue.use(VeeValidate);
 Vue.component('nav-bar', require('./components/NavBar.vue').default);
 Vue.component('section-top', require('./components/SectionTop.vue').default);
 Vue.component('modal-reservation', require('./components/ModalReservation.vue').default);
-Vue.component('modal-contact', require('./components/ModalContact.vue').default);
+Vue.component('modal-contact', require('./components/ModalMessage.vue').default);
 Vue.component('section-about', require('./components/SectionAbout.vue').default);
 Vue.component('section-streak', require('./components/SectionStreak.vue').default);
 Vue.component('section-menu', require('./components/SectionMenu.vue').default);

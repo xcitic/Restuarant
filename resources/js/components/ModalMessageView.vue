@@ -48,29 +48,6 @@ export default {
 
   props: {data: Object},
 
-  methods: {
-
-    hide() {
-      this.$modal.hide('editReservation');
-    },
-
-    async update() {
-      this.status = 'loading';
-      let payload = this.data;
-
-      axios.post(`/message/${payload.id}/update`, payload)
-            .then((response) => {
-              this.$emit('close');
-              this.flash(response.data, 'success');
-            })
-            .catch((err) => {
-              this.flash(err, 'error');
-            });
-
-
-
-    }
-  }
 }
 </script>
 
