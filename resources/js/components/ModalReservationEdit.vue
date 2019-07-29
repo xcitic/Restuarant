@@ -75,7 +75,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import DatePicker from 'vuejs-datetimepicker';
 import RangeSlider from 'vue-range-slider';
 import 'vue-range-slider/dist/vue-range-slider.css';

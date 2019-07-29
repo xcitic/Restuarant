@@ -1872,11 +1872,9 @@ module.exports = function isBuffer (obj) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ModalReservationEdit_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalReservationEdit.vue */ "./resources/js/components/ModalReservationEdit.vue");
-/* harmony import */ var _ModalMessageEdit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModalMessageEdit.vue */ "./resources/js/components/ModalMessageEdit.vue");
-/* harmony import */ var _ModalMessageView_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ModalMessageView.vue */ "./resources/js/components/ModalMessageView.vue");
+/* harmony import */ var _ModalReservationEdit_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalReservationEdit.vue */ "./resources/js/components/ModalReservationEdit.vue");
+/* harmony import */ var _ModalMessageEdit_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalMessageEdit.vue */ "./resources/js/components/ModalMessageEdit.vue");
+/* harmony import */ var _ModalMessageView_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModalMessageView.vue */ "./resources/js/components/ModalMessageView.vue");
 //
 //
 //
@@ -1979,13 +1977,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    editReservation: _ModalReservationEdit_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    editReservation: _ModalReservationEdit_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -2002,7 +1999,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchReservations: function fetchReservations() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/reservations/get').then(function (_ref) {
+      axios.get('/reservations/get').then(function (_ref) {
         var data = _ref.data;
         _this.reservations = data;
       });
@@ -2010,7 +2007,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchMessages: function fetchMessages() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/messages/get').then(function (_ref2) {
+      axios.get('/messages/get').then(function (_ref2) {
         var data = _ref2.data;
         _this2.messages = data;
       });
@@ -2018,7 +2015,7 @@ __webpack_require__.r(__webpack_exports__);
     removeReservation: function removeReservation(id) {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reservation/".concat(id, "/delete")).then(function (response) {
+      axios.post("/reservation/".concat(id, "/delete")).then(function (response) {
         _this3.flash(response.data, 'success');
 
         _this3.fetchReservations();
@@ -2029,7 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
     removeMessage: function removeMessage(id) {
       var _this4 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/message/".concat(id, "/delete")).then(function (response) {
+      axios.post("/message/".concat(id, "/delete")).then(function (response) {
         _this4.flash(response.data, 'success');
 
         _this4.fetchMessages();
@@ -2040,7 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
     modalReservation: function modalReservation(i) {
       var payload = this.reservations[i];
       console.log(payload);
-      this.$modal.show(_ModalReservationEdit_vue__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      this.$modal.show(_ModalReservationEdit_vue__WEBPACK_IMPORTED_MODULE_0__["default"], {
         data: payload
       }, {
         height: 'auto'
@@ -2048,7 +2045,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     modalMessage: function modalMessage(i) {
       var payload = this.messages[i];
-      this.$modal.show(_ModalMessageEdit_vue__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      this.$modal.show(_ModalMessageEdit_vue__WEBPACK_IMPORTED_MODULE_1__["default"], {
         data: payload
       }, {
         height: 'auto'
@@ -2056,7 +2053,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     modalMessageView: function modalMessageView(i) {
       var payload = this.messages[i];
-      this.$modal.show(_ModalMessageView_vue__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      this.$modal.show(_ModalMessageView_vue__WEBPACK_IMPORTED_MODULE_2__["default"], {
         data: payload
       }, {
         height: 'auto'
@@ -2078,8 +2075,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2160,7 +2155,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2190,7 +2184,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (valid) {
                     var payload = _this.input;
                     _this.complete = true;
-                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/message', payload).then(function (response) {
+                    axios.post('/message', payload).then(function (response) {
                       _this.flash(response.data, 'success');
                     })["catch"](function (err) {
                       _this.flash(err, 'error');
@@ -2228,8 +2222,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2297,7 +2289,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     data: Object
@@ -2324,7 +2315,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 payload = this.data;
                 this.$validator.validate().then(function (valid) {
                   if (valid) {
-                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/message/".concat(payload.id, "/update"), payload).then(function (response) {
+                    axios.post("/message/".concat(payload.id, "/update"), payload).then(function (response) {
                       _this.$emit('close');
 
                       _this.flash(response.data, 'success');
@@ -2364,8 +2355,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2416,10 +2405,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
-$(document).ready(function () {
-  $('.mdb-select').material_select();
-});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     data: Object
@@ -2441,7 +2426,7 @@ $(document).ready(function () {
               case 0:
                 this.status = 'loading';
                 payload = this.data;
-                axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/message/".concat(payload.id, "/update"), payload).then(function (response) {
+                axios.post("/message/".concat(payload.id, "/update"), payload).then(function (response) {
                   _this.$emit('close');
 
                   _this.flash(response.data, 'success');
@@ -2479,13 +2464,11 @@ $(document).ready(function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuejs-datetimepicker */ "./node_modules/vuejs-datetimepicker/src/datetime_picker.vue");
-/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-range-slider */ "./node_modules/vue-range-slider/dist/vue-range-slider.cjs.js");
-/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-range-slider/dist/vue-range-slider.css */ "./node_modules/vue-range-slider/dist/vue-range-slider.css");
-/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuejs-datetimepicker */ "./node_modules/vuejs-datetimepicker/src/datetime_picker.vue");
+/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-range-slider */ "./node_modules/vue-range-slider/dist/vue-range-slider.cjs.js");
+/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-range-slider/dist/vue-range-slider.css */ "./node_modules/vue-range-slider/dist/vue-range-slider.css");
+/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2581,11 +2564,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Datepicker: vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_2__["default"],
-    RangeSlider: vue_range_slider__WEBPACK_IMPORTED_MODULE_3___default.a
+    Datepicker: vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_1__["default"],
+    RangeSlider: vue_range_slider__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   data: function data() {
     return {
@@ -2617,7 +2599,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.$validator.validate().then(function (valid) {
                   if (valid) {
                     _this.complete = true;
-                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/reservation', payload).then(function (response) {
+                    axios.post('/reservation', payload).then(function (response) {
                       _this.flash(response.data, 'success');
                     })["catch"](function (err) {
                       _this.flash(err, 'error');
@@ -2655,13 +2637,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuejs-datetimepicker */ "./node_modules/vuejs-datetimepicker/src/datetime_picker.vue");
-/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-range-slider */ "./node_modules/vue-range-slider/dist/vue-range-slider.cjs.js");
-/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-range-slider/dist/vue-range-slider.css */ "./node_modules/vue-range-slider/dist/vue-range-slider.css");
-/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuejs-datetimepicker */ "./node_modules/vuejs-datetimepicker/src/datetime_picker.vue");
+/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-range-slider */ "./node_modules/vue-range-slider/dist/vue-range-slider.cjs.js");
+/* harmony import */ var vue_range_slider__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-range-slider/dist/vue-range-slider.css */ "./node_modules/vue-range-slider/dist/vue-range-slider.css");
+/* harmony import */ var vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_range_slider_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2747,14 +2727,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     data: Object
   },
   components: {
-    DatePicker: vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_2__["default"],
-    RangeSlider: vue_range_slider__WEBPACK_IMPORTED_MODULE_3___default.a
+    DatePicker: vuejs_datetimepicker__WEBPACK_IMPORTED_MODULE_1__["default"],
+    RangeSlider: vue_range_slider__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   data: function data() {
     return {
@@ -2779,7 +2758,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.$validator.validate().then(function (valid) {
                   if (valid) {
                     _this.complete = true;
-                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/reservation/".concat(payload.id, "/update"), payload).then(function (response) {
+                    axios.post("/reservation/".concat(payload.id, "/update"), payload).then(function (response) {
                       _this.$emit('close');
 
                       _this.flash(response.data, 'success');
@@ -2878,7 +2857,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    redirectLogin: function redirectLogin() {
+      window.location.assign('/login');
+    }
+  }
+});
 
 /***/ }),
 
@@ -19977,9 +19965,13 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true, regex: /[0-9a-zA-Z]/, max: 255 },
+                    value: {
+                      required: true,
+                      regex: /[A-Za-z0-9._%+-]+/,
+                      max: 255
+                    },
                     expression:
-                      "{required: true, regex: /[0-9a-zA-Z]/ , max:255}"
+                      "{required: true, regex: /[A-Za-z0-9._%+-]+/ , max:255}"
                   }
                 ],
                 staticClass: "md-textarea",
@@ -21185,7 +21177,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "nav",
+    {
+      staticClass:
+        "navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar"
+    },
+    [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarNav" }
+          },
+          [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("ul", { staticClass: "navbar-nav nav-flex-icons" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item ml-2" }, [
+                _c(
+                  "a",
+                  { staticClass: "nav-link", on: { click: _vm.redirectLogin } },
+                  [_vm._v("Login")]
+                )
+              ])
+            ])
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -21193,162 +21225,151 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "nav",
+      "button",
       {
-        staticClass:
-          "navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar"
+        staticClass: "navbar-toggler navbar-toggler-right",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarNav",
+          "aria-controls": "navbarNav",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
       },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "button",
-            {
-              staticClass: "navbar-toggler navbar-toggler-right",
-              attrs: {
-                type: "button",
-                "data-toggle": "collapse",
-                "data-target": "#navbarNav",
-                "aria-controls": "navbarNav",
-                "aria-expanded": "false",
-                "aria-label": "Toggle navigation"
-              }
-            },
-            [_c("span", { staticClass: "navbar-toggler-icon" })]
-          ),
-          _vm._v(" "),
-          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-            _c("strong", [_vm._v("Le Monde")])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navbarNav" }
-            },
-            [
-              _c("ul", { staticClass: "navbar-nav mr-auto smooth-scroll" }, [
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    { staticClass: "nav-link", attrs: { href: "#home" } },
-                    [
-                      _vm._v("Home "),
-                      _c("span", { staticClass: "sr-only" }, [
-                        _vm._v("(current)")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "#about", "data-offset": "100" }
-                    },
-                    [_vm._v("About")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "#intro", "data-offset": "100" }
-                    },
-                    [_vm._v("Intro")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "#specials", "data-offset": "100" }
-                    },
-                    [_vm._v("Specials")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "#menu", "data-offset": "100" }
-                    },
-                    [_vm._v("Menu")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "#testimonials", "data-offset": "100" }
-                    },
-                    [_vm._v("Opinions")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        "data-toggle": "modal",
-                        "data-target": "#modal-contact"
-                      }
-                    },
-                    [_vm._v("Contact")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        "data-toggle": "modal",
-                        "data-target": "#modal-reservation"
-                      }
-                    },
-                    [_vm._v("Reserve Now")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "navbar-nav nav-flex-icons" }, [
-                _c("li", { staticClass: "nav-item" }, [
-                  _c("a", { staticClass: "nav-link" }, [
-                    _c("i", { staticClass: "fa fa-facebook" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c("a", { staticClass: "nav-link" }, [
-                    _c("i", { staticClass: "fa fa-twitter" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c("a", { staticClass: "nav-link" }, [
-                    _c("i", { staticClass: "fa fa-instagram" })
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
-      ]
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+      _c("strong", [_vm._v("Le Monde")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "navbar-nav mr-auto smooth-scroll" }, [
+      _c("li", { staticClass: "nav-item" }, [
+        _c("a", { staticClass: "nav-link", attrs: { href: "#home" } }, [
+          _vm._v("Home "),
+          _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { href: "#about", "data-offset": "100" }
+          },
+          [_vm._v("About")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { href: "#intro", "data-offset": "100" }
+          },
+          [_vm._v("Intro")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { href: "#specials", "data-offset": "100" }
+          },
+          [_vm._v("Specials")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { href: "#menu", "data-offset": "100" }
+          },
+          [_vm._v("Menu")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { href: "#testimonials", "data-offset": "100" }
+          },
+          [_vm._v("Opinions")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { "data-toggle": "modal", "data-target": "#modal-contact" }
+          },
+          [_vm._v("Contact")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: {
+              "data-toggle": "modal",
+              "data-target": "#modal-reservation"
+            }
+          },
+          [_vm._v("Reserve Now")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link" }, [
+        _c("i", { staticClass: "fa fa-facebook" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link" }, [
+        _c("i", { staticClass: "fa fa-twitter" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link" }, [
+        _c("i", { staticClass: "fa fa-instagram" })
+      ])
+    ])
   }
 ]
 render._withStripped = true

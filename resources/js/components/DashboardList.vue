@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import editReservation from './ModalReservationEdit.vue';
 import editMessage from './ModalMessageEdit.vue';
 import viewMessage from './ModalMessageView.vue';

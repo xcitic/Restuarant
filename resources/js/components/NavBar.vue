@@ -52,6 +52,9 @@
                   <li class="nav-item">
                       <a class="nav-link"><i class="fa fa-instagram"></i></a>
                   </li>
+                  <li class="nav-item ml-2">
+                      <a class="nav-link" @click="redirectLogin">Login</a>
+                  </li>
               </ul>
 
           </div>
@@ -61,5 +64,10 @@
 
 <script>
     export default {
+      methods: {
+        redirectLogin() {
+          window.location.assign('/login')
+        }
+      }
     }
 </script>

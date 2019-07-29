@@ -45,7 +45,7 @@
 
                   <div class="md-form">
                       <i class="fa fa-pencil prefix"></i>
-                      <textarea v-model.trim="input.message" v-validate="{required: true, regex: /[0-9a-zA-Z]/ , max:255}" name="message" type="text" id="contact-message" class="md-textarea"></textarea>
+                      <textarea v-model.trim="input.message" v-validate="{required: true, regex: /[A-Za-z0-9._%+-]+/ , max:255}" name="message" type="text" id="contact-message" class="md-textarea"></textarea>
                       <label for="contact-message">Textarea</label>
                       <div v-if="submitted && errors.has('message')" class="invalid-feedback">
                         {{ errors.first('message') }}
@@ -73,7 +73,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
 
