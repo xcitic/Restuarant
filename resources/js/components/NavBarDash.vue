@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar fixed-top navbar-toggleable-md navbar-light">
+  <nav class="navbar fixed-top navbar-toggleable-md navbar-dark" style="background: #272a2d !important;">
 
       <div class="container">
 
