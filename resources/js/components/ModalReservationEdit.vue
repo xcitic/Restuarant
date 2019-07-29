@@ -109,7 +109,7 @@ export default {
           if (valid) {
             this.complete = true;
 
-            axios.post(`http://localhost:8000/reservation/${payload.id}/update`, payload)
+            axios.post(`/reservation/${payload.id}/update`, payload)
               .then((response) => {
                 this.$emit('close');
                 this.flash(response.data, 'success');

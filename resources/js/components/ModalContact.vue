@@ -99,7 +99,7 @@ export default {
             let payload = this.input;
             this.complete = true;
 
-            axios.post('http://localhost:8000/message', payload)
+            axios.post('/message', payload)
                   .then((response) => {
                     this.flash(response.data, 'success');
                   })

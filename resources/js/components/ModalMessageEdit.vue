@@ -83,7 +83,7 @@ export default {
       this.$validator.validate().then(
         valid => {
           if (valid) {
-            axios.post(`http://localhost:8000/message/${payload.id}/update`, payload)
+            axios.post(`/message/${payload.id}/update`, payload)
               .then((response) => {
                 this.$emit('close');
                 this.flash(response.data, 'success');

@@ -9,7 +9,12 @@
             <nav-bar-dash />
         </div>
         <div class="container">
-
+          <div>
+            <modal-reservation />
+          </div>
+          <div>
+            <modal-contact />
+          </div>
 
           <div class="col-md-12 mt-4">
             <div class="offset-md-4">

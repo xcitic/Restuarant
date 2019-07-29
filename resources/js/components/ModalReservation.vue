@@ -122,7 +122,7 @@ export default {
           if (valid) {
             this.complete = true;
 
-            axios.post('http://localhost:8000/reservation', payload)
+            axios.post('/reservation', payload)
               .then((response) => {
                 this.flash(response.data, 'success');
               })

@@ -127,21 +127,21 @@ export default {
 
   methods: {
     fetchReservations() {
-      axios.get('http://localhost:8000/reservations/get')
+      axios.get('/reservations/get')
             .then(({data}) => {
               this.reservations = data;
             });
     },
 
     fetchMessages() {
-      axios.get('http://localhost:8000/messages/get')
+      axios.get('/messages/get')
           .then(({data}) => {
             this.messages = data;
           });
     },
 
     removeReservation(id) {
-      axios.post(`http://localhost:8000/reservation/${id}/delete`)
+      axios.post(`/reservation/${id}/delete`)
             .then((response) => {
               this.flash(response.data, 'success');
               this.fetchReservations();
@@ -152,7 +152,7 @@ export default {
     },
 
     removeMessage(id) {
-      axios.post(`http://localhost:8000/message/${id}/delete`)
+      axios.post(`/message/${id}/delete`)
             .then((response) => {
               this.flash(response.data, 'success');
               this.fetchMessages();

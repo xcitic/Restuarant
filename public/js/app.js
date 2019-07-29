@@ -2002,7 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchReservations: function fetchReservations() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://localhost:8000/reservations/get').then(function (_ref) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/reservations/get').then(function (_ref) {
         var data = _ref.data;
         _this.reservations = data;
       });
@@ -2010,7 +2010,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchMessages: function fetchMessages() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://localhost:8000/messages/get').then(function (_ref2) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/messages/get').then(function (_ref2) {
         var data = _ref2.data;
         _this2.messages = data;
       });
@@ -2018,7 +2018,7 @@ __webpack_require__.r(__webpack_exports__);
     removeReservation: function removeReservation(id) {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://localhost:8000/reservation/".concat(id, "/delete")).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reservation/".concat(id, "/delete")).then(function (response) {
         _this3.flash(response.data, 'success');
 
         _this3.fetchReservations();
@@ -2029,7 +2029,7 @@ __webpack_require__.r(__webpack_exports__);
     removeMessage: function removeMessage(id) {
       var _this4 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://localhost:8000/message/".concat(id, "/delete")).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/message/".concat(id, "/delete")).then(function (response) {
         _this4.flash(response.data, 'success');
 
         _this4.fetchMessages();
@@ -2190,7 +2190,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (valid) {
                     var payload = _this.input;
                     _this.complete = true;
-                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/message', payload).then(function (response) {
+                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/message', payload).then(function (response) {
                       _this.flash(response.data, 'success');
                     })["catch"](function (err) {
                       _this.flash(err, 'error');
@@ -2324,7 +2324,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 payload = this.data;
                 this.$validator.validate().then(function (valid) {
                   if (valid) {
-                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://localhost:8000/message/".concat(payload.id, "/update"), payload).then(function (response) {
+                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/message/".concat(payload.id, "/update"), payload).then(function (response) {
                       _this.$emit('close');
 
                       _this.flash(response.data, 'success');
@@ -2441,7 +2441,7 @@ $(document).ready(function () {
               case 0:
                 this.status = 'loading';
                 payload = this.data;
-                axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://localhost:8000/message/".concat(payload.id, "/update"), payload).then(function (response) {
+                axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/message/".concat(payload.id, "/update"), payload).then(function (response) {
                   _this.$emit('close');
 
                   _this.flash(response.data, 'success');
@@ -2617,7 +2617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.$validator.validate().then(function (valid) {
                   if (valid) {
                     _this.complete = true;
-                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/reservation', payload).then(function (response) {
+                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/reservation', payload).then(function (response) {
                       _this.flash(response.data, 'success');
                     })["catch"](function (err) {
                       _this.flash(err, 'error');
@@ -2779,7 +2779,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.$validator.validate().then(function (valid) {
                   if (valid) {
                     _this.complete = true;
-                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://localhost:8000/reservation/".concat(payload.id, "/update"), payload).then(function (response) {
+                    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/reservation/".concat(payload.id, "/update"), payload).then(function (response) {
                       _this.$emit('close');
 
                       _this.flash(response.data, 'success');
