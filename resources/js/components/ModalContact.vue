@@ -18,8 +18,8 @@
 
                   <div class="md-form">
                       <i class="fa fa-user prefix"></i>
-                      <input v-model.trim="input.name" v-validate="'required|alpha_spaces|min:4|max:50'" id="name" name="name" type="text" class="form-control">
-                      <label for="name">Your name</label>
+                      <input v-model.trim="input.name" v-validate="'required|alpha_spaces|min:4|max:50'" id="contact-name" name="name" type="text" class="form-control">
+                      <label for="contact-name">Your name</label>
                       <div v-if="submitted && errors.has('name')" class="invalid-feedback">
                         {{ errors.first('name') }}
                       </div>
@@ -27,8 +27,8 @@
 
                   <div class="md-form">
                       <i class="fa fa-envelope prefix"></i>
-                      <input v-model.trim="input.email" v-validate="'required|email|max:50'" name="email" id="email" type="email" class="form-control">
-                      <label for="email">Your email</label>
+                      <input v-model.trim="input.email" v-validate="'required|email|max:50'" name="email" id="contact-email" type="email" class="form-control">
+                      <label for="contact-email">Your email</label>
                       <div v-if="submitted && errors.has('email')" class="invalid-feedback">
                         {{ errors.first('email') }}
                       </div>
@@ -36,8 +36,8 @@
 
                   <div class="md-form">
                       <i class="fa fa-tag prefix"></i>
-                      <input v-model.trim="input.subject" v-validate="'required|alpha_spaces|max:150'" name="subject" type="text" id="subject" class="form-control">
-                      <label for="subject">Subject</label>
+                      <input v-model.trim="input.subject" v-validate="'required|alpha_spaces|max:150'" name="subject" type="text" id="contact-subject" class="form-control">
+                      <label for="contact-subject">Subject</label>
                       <div v-if="submitted && errors.has('subject')" class="invalid-feedback">
                         {{ errors.first('subject') }}
                       </div>
@@ -45,8 +45,8 @@
 
                   <div class="md-form">
                       <i class="fa fa-pencil prefix"></i>
-                      <textarea v-model.trim="input.message" v-validate="'required|alpha_spaces|max:255'" name="message" type="text" id="message" class="md-textarea"></textarea>
-                      <label for="textarea">Textarea</label>
+                      <textarea v-model.trim="input.message" v-validate="{required: true, regex: /[0-9a-zA-Z]/ , max:255}" name="message" type="text" id="contact-message" class="md-textarea"></textarea>
+                      <label for="contact-message">Textarea</label>
                       <div v-if="submitted && errors.has('message')" class="invalid-feedback">
                         {{ errors.first('message') }}
                       </div>

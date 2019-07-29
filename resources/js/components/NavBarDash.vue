@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar">
+  <nav class="navbar fixed-top navbar-toggleable-md navbar-light">
 
       <div class="container">
 
@@ -16,22 +16,22 @@
               <!--Links-->
               <ul class="navbar-nav mr-auto smooth-scroll">
                   <li class="nav-item">
-                      <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="/#home">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#about" data-offset="100">About</a>
+                      <a class="nav-link" href="/#about" data-offset="100">About</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#intro" data-offset="100">Intro</a>
+                      <a class="nav-link" href="/#intro" data-offset="100">Intro</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#specials" data-offset="100">Specials</a>
+                      <a class="nav-link" href="/#specials" data-offset="100">Specials</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#menu" data-offset="100">Menu</a>
+                      <a class="nav-link" href="/#menu" data-offset="100">Menu</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#testimonials" data-offset="100">Opinions</a>
+                      <a class="nav-link" href="/#testimonials" data-offset="100">Opinions</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" data-toggle="modal" data-target="#modal-contact">Contact</a>
@@ -44,13 +44,7 @@
               <!--Social Icons-->
               <ul class="navbar-nav nav-flex-icons">
                   <li class="nav-item">
-                      <a class="nav-link"><i class="fa fa-facebook"></i></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link"><i class="fa fa-twitter"></i></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link"><i class="fa fa-instagram"></i></a>
+                      <a class="nav-link" @click="logout">Logout</a>
                   </li>
               </ul>
 
@@ -61,5 +55,16 @@
 
 <script>
     export default {
+      methods: {
+        async logout() {
+          axios.post('/logout')
+                .then(response => {
+                  window.location.assign('/');
+                })
+                .catch(err => {
+                  console.log(err)
+                });
+        }
+      }
     }
 </script>

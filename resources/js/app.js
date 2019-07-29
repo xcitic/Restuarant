@@ -30,10 +30,12 @@ Vue.component('section-reviews', require('./components/SectionReviews.vue').defa
 Vue.component('section-footer', require('./components/SectionFooter.vue').default);
 // Vue.component('scroll-to-top', require('./components/ScrollToTop.vue').default);
 Vue.component('section-dashboard-list', require('./components/DashboardList.vue').default);
+Vue.component('nav-bar-dash', require('./components/NavBarDash.vue').default);
 
 // Setup Axios and default headers
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.baseURL = process.env.MIX_APP_URL;
 
 // CSRF Token for laravel requests
 let token = document.head.querySelector('meta[name="csrf-token"]');
@@ -43,6 +45,8 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+
 
 
 // Create the vue instance and mount it to #vuejs div.
