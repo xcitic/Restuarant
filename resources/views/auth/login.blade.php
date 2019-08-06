@@ -69,5 +69,9 @@
             </div>
         </div>
     </div>
+    <div class="text-center mt-2">
+      <p> <strong>Username:</strong> admin@admin.admin </p>
+      <p> <strong>Password:</strong> password </p>
+    </div>
 </div>
 @endsection
