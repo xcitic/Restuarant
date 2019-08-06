@@ -3,13 +3,13 @@
       @section('content')
         <div id="vuejs">
 
-          <div class="container-fluid">
+          {{-- <div class="container-fluid">
             <div class="col-md-12">
               <div class="offset-md-4">
                 <flash-message style="position:fixed; z-index:999999;" class="text-center"></flash-message>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <header>
             <div>
@@ -25,6 +25,17 @@
             <div>
               <modal-contact />
             </div>
+
+            <!-- Flash messaging -->
+            <div class="container-fluid">
+              <div class="col-md-12">
+                <div class="offset-md-4">
+                  <flash-message style="position:fixed; z-index:999999; top:0;" class="text-center"></flash-message>
+                </div>
+              </div>
+            </div>
+          <!--/Flash Messaging -->
+
           </header>
 
           <main>
@@ -76,16 +87,6 @@
   <script>
       //Animation init
       new WOW().init();
-
-      //Modal
-      $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-      })
-
-      // Material Select Initialization
-      $(document).ready(function() {
-          $('.mdb-select').material_select();
-      });
 
   </script>
 

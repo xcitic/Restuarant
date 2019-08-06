@@ -7,7 +7,7 @@
               <span class="navbar-toggler-icon"></span>
           </button>
 
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
               <strong>Le Monde</strong>
           </a>
 
@@ -66,7 +66,7 @@
     export default {
       methods: {
         redirectLogin() {
-          window.location.assign('/login')
+          window.location.assign('/login');
         }
       }
     }

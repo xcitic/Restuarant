@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
       <div id="vuejs">
         <div>
             <nav-bar-dash />
@@ -36,9 +34,6 @@
 
 @section('scripts')
 <script>
-  $(document).ready(function() {
-    $('.mdb-select').material_select();
-  });
 
   $(function() {
     $('[data-toggle="tooltip"]').tooltip();

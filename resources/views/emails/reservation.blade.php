@@ -15,7 +15,7 @@ Date: {{$reservation->date}}
   <strong>Password: {{$password}} </strong>
 @endif
 <br>
-@component('mail::button', ['url' => env('APP_URL') . '/login'])
+@component('mail::button', ['url' => config('app.url') . '/login'])
 Login if you want to edit your reservation
 @endcomponent
 

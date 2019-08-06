@@ -103,9 +103,6 @@ class ReservationController extends Controller
         $reservation->save();
 
         // Send email confirmation to user with reservation & user details
-        // TODO
-        //  Change ->send to ->queue
-
         try {
             if($newUser) {
               Mail::to($email)->send(new ReservationCreated($reservation, $email, $password));
@@ -116,19 +113,6 @@ class ReservationController extends Controller
         } catch (\Exception $e) {
             return $e;
         }
-
-
-
-        // try {
-        //
-        // } catch (\Exception $e) {
-        //   return response()->json($e, 500);
-        // }
-
-
-        // } else {
-        //   Mail::to($email)->send(new ReservationCreated($reservation, $email, $password));
-        // }
 
         return response()->json('Your reservation has been saved. Thank you. An confirmation will soon be sent to: ' . $email . '', 200);
       }
@@ -143,7 +127,7 @@ class ReservationController extends Controller
      * @param  Integer  $id   Unique identifier
      * @return JSON           Success or error message
      */
-    public function update(Request $data, $id) {
+    public function update(Request $data, int $id) {
 
 
       $validateData = $data->validate([
@@ -178,7 +162,7 @@ class ReservationController extends Controller
      * @param  integer $id  Unique identifier
      * @return JSON
      */
-    public function destroy($id) {
+    public function destroy(int $id) {
        $reservation = Reservation::findOrFail($id);
        $user = Auth::user();
 
@@ -206,7 +190,7 @@ class ReservationController extends Controller
      * @param  string $keyspace  Allowed characters
      * @return string
      */
-    public function randomPassword($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+    public function randomPassword(int $length, string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
       $pieces = [];
       $max = mb_strlen($keyspace, '8bit') - 1;
       for ($i = 0; $i < $length; ++$i) {

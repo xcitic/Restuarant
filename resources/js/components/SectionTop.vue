@@ -5,7 +5,7 @@
           <div class="full-bg-img flex-center">
               <div class="container">
                   <div class="row smooth-scroll">
-                      <div class="col-md-12 white-text text-center mt-4">
+                      <div class="col-md-12 white-text text-center mt-4 fulloverlay">
                           <div>
                               <h2 class="brand-name font-bold mt-5 mb-2">Restaurant</h2>
                               <hr class="hr-light">
@@ -32,5 +32,16 @@
 <style>
   .full-bg-img {
     position: relative !important;
+  }
+
+  .restaurant-lp .intro {
+      height: 100vh !important;
+  }
+
+  .fulloverlay {
+      visibility: visible;
+      animation-delay: 0.2s;
+      animation-name: fadeIn;
+      height: 100vh !important;
   }
 </style>
