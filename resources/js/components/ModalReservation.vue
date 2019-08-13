@@ -126,7 +126,7 @@ export default {
                 this.flash(response.data, 'success');
               })
               .catch((err) => {
-                this.flash(err, 'error');
+                this.flash('The input was incorrect. Could not complete your reservation.', 'error');
               });
           }
         }

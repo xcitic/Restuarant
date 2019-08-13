@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use App\User;
+use App\Http\Requests\ReservationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -11,9 +12,6 @@ use App\Mail\ReservationCreated;
 
 class ReservationController extends Controller
 {
-
-
-
 
     /**
      * List the reservations, admin sees all, user sees the one it owns.
@@ -24,11 +22,10 @@ class ReservationController extends Controller
       $user = Auth::user();
 
       if ($user->isAdmin()) {
-        $reservations = Reservation::get();
+        $reservations = Reservation::latest()->get();
       } else {
         $reservations = $user->reservations;
       }
-
 
       return response()->json($reservations, 200);
 
@@ -37,30 +34,19 @@ class ReservationController extends Controller
 
     /**
      * Validate data and save to database + notify user.
-     * @param  Request $data  input from frontend
+     * @param  ReservationRequest $request  validate & sanitize input
      * @return JSON
      */
-    public function store(Request $data) {
+    public function store(ReservationRequest $request) {
 
       // validate the input
-      //
       // save to Database
-      //
       // Create user with random password
-      //
       // send email notification to user with reservation details and user login to change their details
 
+      $validated = $request->validated();
 
-      $validateData = $data->validate([
-        'name' => 'required|string|max:100',
-        'email' => 'required|string|max:100',
-        'phone' => 'required|string|max:25',
-        'seats' => 'required|integer|max:250',
-        'date' => 'required|string|max:100',
-      ]);
-
-
-      $email = $data->email;
+      $email = $request->email;
 
       // If user does not exist
       // Create a new user with a random password
@@ -78,13 +64,12 @@ class ReservationController extends Controller
         $encrypted = password_hash($password, PASSWORD_DEFAULT);
 
         $user = new User([
-          'name' => $data->name,
+          'name' => $request->name,
           'email' => $email,
           'password' => $encrypted,
         ]);
 
         $user->save();
-
         $newUser = true;
       }
 
@@ -93,11 +78,11 @@ class ReservationController extends Controller
       {
         $reservation = Reservation::create([
           'user_id' => $user->id,
-          'name' => $data->name,
+          'name' => $request->name,
           'email' => $email,
-          'phone' => $data->phone,
-          'seats' => $data->seats,
-          'date' => $data->date,
+          'phone' => $request->phone,
+          'seats' => $request->seats,
+          'date' => $request->date,
         ]);
 
         $reservation->save();
@@ -111,7 +96,7 @@ class ReservationController extends Controller
             }
 
         } catch (\Exception $e) {
-            return $e;
+            return response(['message' => 'Could not send email to that address.'], 400);
         }
 
         return response()->json('Your reservation has been saved. Thank you. An confirmation will soon be sent to: ' . $email . '', 200);
@@ -127,27 +112,31 @@ class ReservationController extends Controller
      * @param  Integer  $id   Unique identifier
      * @return JSON           Success or error message
      */
-    public function update(Request $data, int $id) {
+    public function update(ReservationRequest $request, int $id) {
 
 
-      $validateData = $data->validate([
-        'name' => 'required|string|max:100',
-        'email' => 'required|string|max:100',
-        'phone' => 'required|string|max:25',
-        'seats' => 'required|integer|max:250',
-        'date' => 'required|string|max:100',
-      ]);
+      $validated = $request->validated();
 
-      $reservation = Reservation::findOrFail($id);
+      $reservation = Reservation::where('id', $id)->first();
       $user = Auth::user();
       $reservation_owner = $reservation->owner->id;
 
       // Admin can edit everything, user can only edit what they own.
-      if ($user->isAdmin()) {
-        $reservation->update($data->all());
+      if ( isset($reservation->user_id) && $user->id === $reservation->owner->id ) {
+          $reservation->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'seats' => $request->seats,
+            'date' => $request->date,
+          ]);
       }
-      elseif ($user->id === $reservation_owner) {
-        $reservation->update($data->all());
+      elseif ($user->isAdmin()) {
+        $reservation->update([
+          'name' => $request->name,
+          'phone' => $request->phone,
+          'seats' => $request->seats,
+          'date' => $request->date,
+        ]);
       }
       else {
         return response()->json('Unauthorized', 401);
@@ -163,17 +152,13 @@ class ReservationController extends Controller
      * @return JSON
      */
     public function destroy(int $id) {
-       $reservation = Reservation::findOrFail($id);
+       $reservation = Reservation::where('id', $id)->first();
        $user = Auth::user();
 
-       $user_id = $user->id;
-       $reservation_owner = $reservation->owner->id;
-
-       if ($user->isAdmin()) {
+       if ( isset($reservation->user_id) && $user->id === $reservation->owner->id ) {
          $reservation->delete();
        }
-       elseif ($user_id === $reservation_owner) {
-
+       elseif ($user->isAdmin()) {
          $reservation->delete();
        }
        else {

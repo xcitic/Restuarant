@@ -2554,7 +2554,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     axios.post('/reservation', payload).then(function (response) {
                       _this.flash(response.data, 'success');
                     })["catch"](function (err) {
-                      _this.flash(err, 'error');
+                      _this.flash('The input was incorrect. Could not complete your reservation.', 'error');
                     });
                   }
                 });
