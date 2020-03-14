@@ -10,4 +10,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+yarn.lock
+composer.lock
 TODO.md
+.idea/
+/.DS_Store
+.DS_Store
