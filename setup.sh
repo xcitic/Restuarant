@@ -26,7 +26,8 @@ $packagemanager install
 
 # Setting up env variables. Default PDO is Sqlite
 cp .env.example .env
-
+# generate application salt
+php artisan key:generate
 # Build production app.js
 yarn run prod
 # setup database file sqlite
