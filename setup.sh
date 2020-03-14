@@ -33,8 +33,6 @@ yarn run prod
 # setup database file sqlite
 touch database/database.sqlite
 php artisan migrate
-# Setup passport keys
-php artisan passport:install
 # Seed with dummy data
 php artisan db:seed
 

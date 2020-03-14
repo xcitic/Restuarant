@@ -12,6 +12,7 @@ npm-debug.log
 yarn-error.log
 yarn.lock
 composer.lock
+composer.lock
 TODO.md
 .idea/
 /.DS_Store
