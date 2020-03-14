@@ -1,6 +1,10 @@
 # Restuarant
 Resturant booking and management webpage made with Laravel and VueJS
 
+<a href="https://restaurant.samilazreg.com" style="padding-bottom: 1rem;">
+ Live demo
+</a> 
+
 <p align="center">
   <a href="https://github.com/laravel/laravel">
     <img src="https://img.shields.io/badge/Laravel-5.8-brightgreen.svg" alt="laravel">
